@@ -14,6 +14,9 @@ class Base:
         self.from_data(data)
         endpoint = type(self).__name__.lower()
         self.url = f'{client.BASE}/{endpoint}/{self.tag}'
+       
+    async def from_data(self):
+        pass
 
     async def update(self):
 
