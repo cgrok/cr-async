@@ -1,4 +1,4 @@
-## Client
+# Client
 Represents the connection to the api, this class is used to interact with cr-api.com
           
 #### Parameters 
