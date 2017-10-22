@@ -6,5 +6,5 @@ class crasync.Client(session=None)
   * **session** (*Optional[aiohttp.ClientSession]*) - an *`aiohttp.ClientSession`* to use, if not provided the default one will be created. 
 
 ## Methods
-* *coroutine* **`get_profile`**`(tag)`
+* *coroutine* **`get_profile(tag)`**
 * `get_clan(tag)`
