@@ -1,4 +1,4 @@
-## Profile
+# Profile
 Represents a clash royale player profile.
 
 #### Attributes
@@ -15,3 +15,14 @@ Represents a clash royale player profile.
 ##### **`experience`**
   - A tuple consisting of current experience and experience required to level up.
 
+##### **`name_changed`**
+  - A bool which indicates whether or not the player has changed names.
+
+##### **`global_rank`**
+  - The global rank of the player.
+
+##### **`current_trophies`**
+  - The number of trophies the player is currently at.
+  
+##### **`highest_trophies`**
+  - The highest trophies the player has reached.
