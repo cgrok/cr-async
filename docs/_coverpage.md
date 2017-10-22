@@ -1,8 +1,8 @@
 ![logo](media/dgTICLL.png)
 
-# I'm Grok <small>0.1.1</small>
+# cr-async <small>v1.0.0a</small>
 
-> A multipurpose discord bot!
+> An asynchronous clashroyale api wrapper
 
-[GitHub](https://github.com/verixx/grokbot/)
+[GitHub](https://github.com/grokkers/cr-async/)
 [Get Started](#welcome)
