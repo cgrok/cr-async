@@ -1,6 +1,6 @@
 # Client
 `class crasync.Client(session=None)                   `
-* **Parameters**    
+## **Parameters**    
     * **session** (*Optional[aiohttp.ClientSession]*) - an *`aiohttp.ClientSession`* to use, if not provided the default one will be created.
 
 Roughly equivalent to:
