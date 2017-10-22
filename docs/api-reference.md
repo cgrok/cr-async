@@ -1,9 +1,10 @@
 # Api Reference
 
-Here you can see stuff
+The following section outlines the api of crasync.
 
 ## Client
-Represents the connection to the api          
+Represents the connection to the api, this class is used to interact with cr-api.com
+          
 #### Parameters 
 
 ##### **session** (*Optional[aiohttp.ClientSession]*) 
@@ -12,15 +13,15 @@ Represents the connection to the api
 #### Methods
 Note: Valid tags may only contain the following characters: `0289PYLQGRJCUV`
 
-##### * *coroutine* **`get_profile(tag)`**
-  - Returns a [Profile](#profile) object that represents the player's profile. 
+##### *coroutine* **`get_profile(tag)`**
+  > Returns a [Profile](#profile) object that represents the player's profile. 
 
-##### * *coroutine* **`get_clan(tag)`**
-  - Returns a [Clan](#clan) object that represents a clash royale clan.
+##### *coroutine* **`get_clan(tag)`**
+  > Returns a [Clan](#clan) object that represents a clash royale clan.
 
 
 ## Profile
-`class crasync.Profile`
+Represents a clash royale player profile.
 
 #### Attributes
 
@@ -29,3 +30,12 @@ Note: Valid tags may only contain the following characters: `0289PYLQGRJCUV`
   
 ##### **`name`**
   - The name of the player.
+
+##### **`level`**
+  - The current level the player is at.
+
+##### **`experience`**
+  - A tuple consisting of current experience and experience required to level up.
+
+
+
