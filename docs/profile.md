@@ -40,3 +40,9 @@
 > **`draws`** - The amount of games drawn by the player.
 
 > **`arena`** - An arena object representing the player's arena.
+
+
+#### Methods
+
+##### *coroutine* **`get_clan()`**
+  * Returns the full clan object corresponding to the player's clan.
