@@ -17,7 +17,7 @@ Note: Valid tags may only contain the following characters: `0289PYLQGRJCUV`
 profile = await client.get_profile('2P0LYQ')
 ```
 
-#### *coroutine* **`get_clan(tag)`**
+##### *coroutine* **`get_clan(tag)`**
   - Returns a `Clan` object that represents a clash royale clan.
 ```python
 clan = await client.get_clan('9RQ928L')
