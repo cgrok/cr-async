@@ -8,7 +8,7 @@ class crasync.Client(session=None)
 
 ## Methods
 #### *coroutine* **`get_profile(tag)`**
-  - Returns a `Profile` object that represents the cr player. 
+  - Returns a `Profile` object that represents the players profile. 
 ```py
 profile = await client.get_profile('2P0LYQ)
 ```
