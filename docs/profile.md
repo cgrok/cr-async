@@ -1,5 +1,5 @@
 # Profile
-Represents a clash royale player profile.
+?> Represents a clash royale player profile.
 
 #### Attributes
 
