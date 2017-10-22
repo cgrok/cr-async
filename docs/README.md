@@ -1,3 +1,5 @@
+# Welcome!
+
 crasync is an **asynchronus** CR API wrapper for Python made to be both fully-featured and easy to use.
 
 Run `pip3 install crasync` and `pip3 install aiohttp` in your console.
