@@ -1,5 +1,1 @@
-- [Commands](commands.md)
-
-- [Installation](installation.md)
-
-- [Setting up Custom Cogs](cogs.md)
+- [Api Reference](api-reference.md)
