@@ -134,6 +134,7 @@ class Profile(Base):
         clan = data.get('clan')
         self.level = exp.get('level')
         self.experience = (exp.get('xp'), exp.get('xpRequiredForLevelUp'))
+        self.xp = (exp.get('xp'), exp.get('xpRequiredForLevelUp'))
         self.name_changed = data.get('nameChanged')
         self.global_rank = data.get('globalRank')
         self.current_trophies = data.get('trophies')
