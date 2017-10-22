@@ -1,10 +1,14 @@
-# Client
-`class crasync.Client(session=None)`              
-## Parameters   
+# Api Reference
+
+Here you can see stuff
+
+## Client
+Represents the connection to the api          
+### Parameters   
 #### **session** (*Optional[aiohttp.ClientSession]*) 
   - an *`aiohttp.ClientSession`* to use, if not provided the default one will be created. 
 
-## Methods
+### Methods
 Note: Valid tags may only contain the following characters: `0289PYLQGRJCUV`
 
 #### *coroutine* **`get_profile(tag)`**
@@ -19,9 +23,9 @@ profile = await client.get_profile('2P0LYQ')
 clan = await client.get_clan('9RQ928L')
 ```
 
-# Profile
+## Profile
 `class crasync.Profile`
-## Attributes
+### Attributes
 #### **`tag`** 
   - The player tag associated with the profile
 #### **`name`**
