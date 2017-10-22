@@ -1,1 +1,3 @@
-- [Api Reference](api-reference.md)
+* Api Reference
+* [Client](client.md)
+* [Profile](profile.md)
