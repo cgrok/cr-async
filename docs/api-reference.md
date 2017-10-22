@@ -7,4 +7,5 @@ class crasync.Client(session=None)
 
 ## Methods
 * *coroutine* **`get_profile(tag)`**
+  - Returns a `Profile` object that represents the cr player.
 * `get_clan(tag)`
