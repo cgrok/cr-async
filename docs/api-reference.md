@@ -13,7 +13,7 @@ Represents the connection to the api
 Note: Valid tags may only contain the following characters: `0289PYLQGRJCUV`
 
 ##### *coroutine* **`get_profile(tag)`**
-  - Returns a `Profile` object that represents the player's profile. 
+  - Returns a [`Profile`](#profile) object that represents the player's profile. 
 
 ##### *coroutine* **`get_clan(tag)`**
   - Returns a `Clan` object that represents a clash royale clan.
