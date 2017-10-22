@@ -12,4 +12,4 @@ class crasync.Client(session=None)
 ```py
 profile = await client.get_profile('2P0LYQ)
 ```
-* `get_clan(tag)`
+#### *coroutine* **`get_clan(tag)`**
