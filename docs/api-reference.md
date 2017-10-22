@@ -13,11 +13,9 @@ Represents the connection to the api, this class is used to interact with cr-api
 #### Methods
 Note: Valid tags may only contain the following characters: `0289PYLQGRJCUV`
 
-##### *coroutine* **`get_profile(tag)`**
-  > Returns a [Profile](#profile) object that represents the player's profile. 
+##### *coroutine* **`get_profile(tag)`** - Returns a [Profile](#profile) object that represents the player's profile. 
 
-##### *coroutine* **`get_clan(tag)`**
-  > Returns a [Clan](#clan) object that represents a clash royale clan.
+##### *coroutine* **`get_clan(tag)`** - Returns a [Clan](#clan) object that represents a clash royale clan.
 
 
 ## Profile
