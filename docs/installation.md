@@ -1,26 +1,40 @@
-# How To Install
+crasync is an **asynchronus** CR API wrapper for Python made to be both fully-featured and easy to use.
 
-## Our Bot
-Get it from [here](https://discordapp.com/oauth2/authorize/?permissions=0&scope=bot&client_id=361482671450357762)!  
-**LINK HAS NO PERMISISONS**
+Run `pip3 install crasync` and `pip3 install aiohttp` in your console.
 
-## Self-Hosting
+# Installing
 
-1. Create a Bot Application for Discord
-2. Head over to the [applicatons page](https://discordapp.com/developers/applications/me).
-3. Click “new application”. Give it a name, picture and description.
-4. Click “Create Bot User” and click “Yes, Do It!” when the dialog pops up.
-5. Copy down the bot token. This is what is used to login to your bot and will be used at Step 8, or 11 if you are setting up on your PC.
+Install it normally from PyPI with pip:
+```elm
+pip3 install crasync
+```
+Install `aiohttp` as well
+```elm
+pip3 install aiohttp
+```
 
-*Here's a GIF to explain the first 5 steps*
-![GIF to explain the first 5 steps](https://i.imgur.com/Y2ouW7I.gif)
+# Using the Wrapper
 
-6. Download the bot from the [github page](https://github.com/verixx/grokbot/archive/master.zip).
-7. Extract the zip file to the desktop or wherever you want.
-8. Open your terminal or cmd.
-9. Navigate to the bot folder. i.e `cd desktop/grokbot-master`
-10. Install all the requirements: `pip install -r requirements.txt`
-11. Run the bot with `python grokbot.py` or on mac or linux `python3.6 grokbot.py`
-12. Enter your token and server ID in the wizard.
-13. Once the bot is online in your server, do `{p}setup` and you are good to go!    
-You can add the bot to your server with [this tool](https://finitereality.github.io/permissions-calculator/?v=0). Your Client ID is retrived from the [applicatons page](https://discordapp.com/developers/applications/me)
+Since this is an asynchronus wrapper, the code has to be within an asynchronus function.
+
+A short example to grab a member's name and his clan's tag, and the number of his clan members.
+
+```py
+import crasync
+import asyncio
+
+async def main():
+    client = crasync.Client()
+    profile = await client.get_profile('2P0LYQ')
+    print(profile.name)
+    print(profile.clan_tag)
+    clan = await profile.get_clan()
+    print(len(clan.members))
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main())
+```
+
+# What are more things I can do?
+
+Look through the [API Reference](api-reference.md)!
