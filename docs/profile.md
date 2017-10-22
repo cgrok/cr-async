@@ -26,3 +26,12 @@ Represents a clash royale player profile.
   
 ##### **`highest_trophies`**
   - The highest trophies the player has reached.
+  
+##### **`legend_trophies`**
+  - The amount of legendary trophies the player has.
+  
+##### **`tournament_cards_won`**
+  - The amount of tournament cards won.
+
+##### **`challenge_cards_won`**
+  - The amount of challenge cards won.
