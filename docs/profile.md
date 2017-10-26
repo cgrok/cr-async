@@ -58,7 +58,7 @@
 **Returns:** int
 
 > **`arena`** - An arena object representing the player's arena.    
-**Returns:** Arena
+**Returns:** [Arena](arena.md)
 
 > **`clan_tag`** - The tag of the clan the player is currently in  
 **Returns:** int
@@ -73,10 +73,10 @@
 **Returns:** Shop
 
 > **`chest_cycle`** - The current chest cycle information about the player    
-**Returns:** Cycle
+**Returns:** [Cycle](cycle.md)
 
 > **`deck`** - The player's deck    
-**Returns:** list [Card, Card, Card, Card, Card, Card, Card, Card]
+**Returns:** list [[Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md)]
 
 #### Methods
 

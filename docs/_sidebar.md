@@ -1,5 +1,10 @@
 * Api Reference
 * [Client](client.md)
 * [Profile](profile.md)
+    * [Arena](arena.md)
+    * [Shop](shop.md)
+    * [Cycle](cycle.md)
+    * [Card](card.md)
 * [Clan](clan.md)
+    * [Clan Chest](clanchest.md)
     * [Member](member.md)

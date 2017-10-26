@@ -6,7 +6,7 @@
 **Returns:** str
 
 > **`arena`** - An arena object representing the player's arena.    
-**Returns:** Arena
+**Returns:** [Arena](arena.md)
 
 > **`role`** - The role of the member in his clan.    
 **Returns:** int
