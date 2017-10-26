@@ -1,8 +1,8 @@
-# Profile
+# Clan
 ?> Represents a clash royale clan.
 
 #### Attributes
-> **`name`** - The clan's name    
+> **`name`** - The name of the clan.    
 **Returns:** str
 
 > **`score`** - The clan's score (throphies)    
