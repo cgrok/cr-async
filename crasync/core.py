@@ -25,7 +25,11 @@ class Client:
         url = f'{self.BASE}/profile/{tag}'
 
         async with self.session.get(url) as resp:
-            data = await resp.json()
+            if resp.status == 200:
+                data = await resp.json()
+            else:
+                print('API is down. Please be patient.')
+                return None
 
         return Profile(self, data)
 
@@ -36,7 +40,11 @@ class Client:
         url = f'{self.BASE}/clan/{tag}'
 
         async with self.session.get(url) as resp:
-            data = await resp.json()
+            if resp.status == 200:
+                data = await resp.json()
+            else:
+                print('API is down. Please be patient.')
+                return None
 
         return Clan(self, data)
 
