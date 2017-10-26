@@ -1,4 +1,4 @@
-* Api Reference
+* API Reference
 * [Client](client.md)
 * [Profile](profile.md)
     * [Arena](arena.md)
