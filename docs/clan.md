@@ -32,5 +32,5 @@
 > **`clan_chest`** - The clan's clan chest data    
 **Returns:** ClanChest
 
-> **`members`** - The clan's members
+> **`members`** - The clan's members    
 **Returns:** list [[Member](member.md), [Member](member.md), [Member](member.md)... [Member](member.md)]
