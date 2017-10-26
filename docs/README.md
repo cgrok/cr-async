@@ -18,6 +18,7 @@ A short example to grab a member's name and his clan's tag, and the number of hi
 ```python
 import crasync
 import aiohttp
+import asyncio
 
 async def main():
     client = crasync.Client()

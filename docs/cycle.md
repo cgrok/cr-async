@@ -19,6 +19,7 @@ To get your next chest, look below:
 import json
 import crasync
 import aiohttp
+import asyncio
 
 async def main():
     client = crasync.Client()
