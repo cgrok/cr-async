@@ -18,7 +18,7 @@ To get your next chest, look below:
 ```python
 import json
 import crasync
-import asyncio
+import aiohttp
 
 async def main():
     client = crasync.Client()
