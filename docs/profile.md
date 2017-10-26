@@ -2,7 +2,6 @@
 ?> Represents a clash royale player profile.
 
 #### Attributes
-
 > **`tag`** - The player tag associated with the profile    
 **Returns:** int
   
