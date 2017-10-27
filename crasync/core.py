@@ -37,7 +37,7 @@ class Client:
         else:
             return Profile(self, data)
 
-    async def get_clan(self, *, tags):
+    async def get_clan(self, *tags):
         '''Get a clan object using tag(s)'''
 
         tags = ','.join(tags)
