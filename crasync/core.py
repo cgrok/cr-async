@@ -48,40 +48,28 @@ class Client:
             if resp.status == 200:
                 data = await resp.json()
             else:
-                print('API is down. Please be patient.')
-                return None
+                raise ConnectionError(f'API not responding: {resp.status}')
         return Profiles(self, data)
 
     async def get_clans(self, *, tags):
         '''Get a clan object using tag(s)'''
-        tags = tags.split(',')
 
-        if len(tags) == 1:
-            url = f'{self.BASE}/clan/{tags[0]}'
-            async with self.session.get(url) as resp:
-                if resp.status == 200:
-                    data = await resp.json()
-                else:
-                    print('API is down. Please be patient.')
-                    return None
-            return Clan(self, data)
+        tags = ','.join(tags)
 
-        taglist = ''
-        i = 0
-        for tag in tags:
-            i += 1
-            taglist += tag[1:]
-            if i != len(tags):
-                taglist += ','
+        url = f'{self.BASE}/clan/{tags}'
 
-        url = f'{self.BASE}/clan/{taglist}'
         async with self.session.get(url) as resp:
             if resp.status == 200:
                 data = await resp.json()
             else:
-                print('API is down. Please be patient.')
-                return None
-        return Clans(self, data)
+                raise ConnectionError(f'API not responding: {resp.status}')
+
+        if isinstance(data, list):
+            return [Clan(self, c) for c in data]
+        else:
+            return Clan(self, c)
+
+    get_clans = get_clan
 
     async def get_constants(self):
         '''Get a profile object using a tag.'''
@@ -92,8 +80,7 @@ class Client:
             if resp.status == 200:
                 data = await resp.json()
             else:
-                print('API is down. Please be patient.')
-                return None
+                raise ConnectionError(f'API not responding: {resp.status}')
 
         return Constants(self, data)
 
