@@ -19,7 +19,7 @@ class Client:
         self.session = session or aiohttp.ClientSession()
 
 
-    async def get_profile(self, *, tags):
+    async def get_profile(self, *tags):
         '''Get a profile object using tag(s)'''
 
         tags = ','.join(tags)
