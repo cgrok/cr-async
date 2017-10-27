@@ -172,10 +172,6 @@ class Clan(Base):
 
     def __repr__(self):
         return f'<Clan tag={self.tag}>'
-
-class Clans(Base):
-    def from_data(self, data):
-        self.clans = [Clan(self.client, c) for c in data]
     
 class Profile(Base):
     '''Represents a player profile.
@@ -225,6 +221,14 @@ class Profile(Base):
 
     def get_clan(self):
         return self.client.get_clan(self.clan_tag)
+
+class Clans(Base):
+    def from_data(self, data):
+        self.clans = [Clan(self.client, c) for c in data]
+
+class Profiles(Base):
+    def from_data(self, data):
+        self.clans = [Profile(self.client, c) for c in data]
 
 class Constants(Base):
     '''Represents the constants from cr-api'''
