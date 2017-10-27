@@ -17,7 +17,7 @@ class Base:
         return f'{self.name} (#{self.tag})'
        
     async def from_data(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     async def update(self):
 
