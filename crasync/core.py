@@ -31,6 +31,9 @@ class Client:
                 data = await resp.json()
             else:
                 raise ConnectionError(f'API not responding: {resp.status}')
+                
+        if "error" in data:
+            return None
 
         if isinstance(data, list):
             return [Profile(self, c) for c in data]
@@ -49,6 +52,9 @@ class Client:
                 data = await resp.json()
             else:
                 raise ConnectionError(f'API not responding: {resp.status}')
+                
+        if "error" in data:
+            return None
 
         if isinstance(data, list):
             return [Clan(self, c) for c in data]
