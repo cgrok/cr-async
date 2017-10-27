@@ -225,7 +225,7 @@ class Constants(Base):
         self.clan = Alliance(data.get('alliance'))
         self.arena = [Arena(c) for c in data.get('arenas')]
         self.badges = [c for c in data.get('badges')]
-        self.chest_cycle = [c for c in data.get['chestCycle']['order']]
+        self.chest_cycle = [c for c in data.get('chestCycle').get('order')]
         self.country_codes = [Country(c) for c in data.get('countryCodes')]
         self.rarities = [Rarity(c) for c in data.get('rarities')]
         self.card = [Card_Info(c) for c in data.get('rarities')]
