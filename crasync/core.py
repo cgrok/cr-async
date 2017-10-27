@@ -1,6 +1,6 @@
 import aiohttp
 import asyncio
-from .models import Profile, Clan
+from .models import Profile, Clan, Constants
 
 
 class Client:
