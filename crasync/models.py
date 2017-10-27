@@ -9,15 +9,15 @@ class Base:
         self.raw_data = data
         self.name = data.get('name')
         self.tag = data.get('tag')
-        #self.from_data(data)
+        self.from_data(data)
         endpoint = type(self).__name__.lower()
         self.url = f'{client.BASE}/{endpoint}/{self.tag}'
 
     def __str__(self):
         return f'{self.name} (#{self.tag})'
        
-    #async def from_data(self):
-        #raise NotImplementedError
+    async def from_data(self):
+        raise NotImplemented
 
     async def update(self):
 
@@ -25,7 +25,7 @@ class Base:
             data = await resp.json()
 
         self.raw_data = data
-        #self.from_data(data)
+        self.from_data(data)
 
         return self
 
@@ -173,6 +173,10 @@ class Clan(Base):
     def __repr__(self):
         return f'<Clan tag={self.tag}>'
 
+class Clans(Base):
+    def from_data(self, data):
+        self.clans = [Clan(self.client, c) for c in data]
+    
 class Profile(Base):
     '''Represents a player profile.
     Includes a clan maybe? (requires a seperate request tho)

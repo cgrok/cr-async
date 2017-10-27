@@ -1,6 +1,6 @@
 import aiohttp
 import asyncio
-from .models import Profile, Clan, Constants
+from .models import Profile, Clan, Clans, Constants
 
 
 class Client:
@@ -33,20 +33,36 @@ class Client:
 
         return Profile(self, data)
 
+    async def get_clans(self, *, tags):
+        '''Get a clan object using tag(s)'''
+        tags = tags.split(',')
 
-    async def get_clan(self, tag):
-        '''Get a clan object using a tag'''
+        if len(tags) == 1:
+            url = f'{self.BASE}/clan/{tags[0]}'
+            async with self.session.get(url) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                else:
+                    print('API is down. Please be patient.')
+                    return None
+            return Clan(self, data)
 
-        url = f'{self.BASE}/clan/{tag}'
+        taglist = ''
+        i = 0
+        for tag in tags:
+            i += 1
+            taglist += tag[1:]
+            if i != len(tags):
+                taglist += ','
 
+        url = f'{self.BASE}/clan/{taglist}'
         async with self.session.get(url) as resp:
             if resp.status == 200:
                 data = await resp.json()
             else:
                 print('API is down. Please be patient.')
                 return None
-
-        return Clan(self, data)
+        return Clans(self, data)
 
     async def get_constants(self):
         '''Get a profile object using a tag.'''
