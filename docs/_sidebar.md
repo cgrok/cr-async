@@ -8,3 +8,8 @@
 * [Clan](clan.md)
     * [Clan Chest](clanchest.md)
     * [Member](member.md)
+* [Constants](constants.md)
+    * [Alliance](alliance.md)
+    * [Country](country.md)
+    * [Rarity](rarity.md)
+    * [Card Info](cardinfo.md)

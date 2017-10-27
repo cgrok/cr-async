@@ -30,4 +30,5 @@ async def main():
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
 ```
-This will print your next chest in cycle.
+This will print your next chest in cycle.    
+This is related to [constants chest cycle](cycle.md) as well!
