@@ -18,9 +18,11 @@ class Client:
     def __init__(self, session=None):
         self.session = session or aiohttp.ClientSession()
 
-
     async def get_profile(self, *tags):
         '''Get a profile object using tag(s)'''
+
+        if ', ' in tags:
+            raise SyntaxError("Read the docs please")
 
         tags = ','.join(tags)
 
@@ -43,6 +45,9 @@ class Client:
     async def get_clan(self, *tags):
         '''Get a clan object using tag(s)'''
 
+        if ', ' in tags:
+            raise SyntaxError("Read the docs please")
+            
         tags = ','.join(tags)
 
         url = f'{self.BASE}/clan/{tags}'
