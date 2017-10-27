@@ -98,6 +98,54 @@ class Member:
     def get_profile(self):
         return self.client.get_profile(self.tag)
 
+class Alliance:
+    def __init__(self, data):
+        self.roles = [c for c in data.get('roles')]
+        self.types = [c for c in data.get('types')]
+
+class Country:
+    def __init__(self, data):
+        self.is_country = data.get('isCountry')
+        
+    def __str__(self):
+        return self.data.get('name')
+
+class Rarity:
+    def __init__(self, data):
+        self.balance_multiplier = data.get('balance_multiplier')
+        self.chance_weight = data.get('chance_weight')
+        self.clone_relative_level = data.get('clone_relative_level')
+        self.donate_capacity = data.get('donate_capacity')
+        self.donate_reward = data.get('donate_reward')
+        self.donate_xp = data.get('donate_xp')
+        self.gold_conversion_value = data.get('gold_conversion_value')
+        self.max_level = data.get('level_count')
+        self.mirror_relative_level = data.get('mirror_relative_level')
+        self.power_level_multiplier = [c for c in data.get('power_level_multiplier')]
+        self.refund_gems = data.get('refund_gems')
+        self.relative_level = data.get('relative_level')
+        self.sort_capacity = data.get('sort_capacity')
+        self.upgrade_cost = [c for c in data.get('upgrade_cost')]
+        self.upgrade_exp = [c for c in data.get('upgrade_exp')]
+        self.upgrade_material_count = [c for c in data.get('upgrade_material_count')]
+
+    def __str__(self):
+        return self.data.get('name')
+
+class Card_Info:
+    def __init__(self, data):
+        self.name = data.get('name')
+        self.rarity = data.get('rarity')
+        self.id = data.get('card_id')
+        self.elixir = data.get('elixir')
+        self.type = data.get('type')
+        self.arena = data.get('arena')
+        self.description = data.get('description')
+        self.decklink = data.get('decklink')
+
+    def __repr__(self):
+        return f'<Card id={self.id}>'
+
 class Clan(Base):
     '''Represents a clan'''
 
@@ -170,54 +218,6 @@ class Profile(Base):
 
     def get_clan(self):
         return self.client.get_clan(self.clan_tag)
-
-class Alliance:
-    def __init__(self, data):
-        self.roles = [c for c in data.get('roles')]
-        self.types = [c for c in data.get('types')]
-
-class Country:
-    def __init__(self, data):
-        self.is_country = data.get('isCountry')
-        
-    def __str__(self):
-        return self.data.get('name')
-
-class Rarity:
-    def __init__(self, data):
-        self.balance_multiplier = data.get('balance_multiplier')
-        self.chance_weight = data.get('chance_weight')
-        self.clone_relative_level = data.get('clone_relative_level')
-        self.donate_capacity = data.get('donate_capacity')
-        self.donate_reward = data.get('donate_reward')
-        self.donate_xp = data.get('donate_xp')
-        self.gold_conversion_value = data.get('gold_conversion_value')
-        self.max_level = data.get('level_count')
-        self.mirror_relative_level = data.get('mirror_relative_level')
-        self.power_level_multiplier = [c for c in data.get('power_level_multiplier')]
-        self.refund_gems = data.get('refund_gems')
-        self.relative_level = data.get('relative_level')
-        self.sort_capacity = data.get('sort_capacity')
-        self.upgrade_cost = [c for c in data.get('upgrade_cost')]
-        self.upgrade_exp = [c for c in data.get('upgrade_exp')]
-        self.upgrade_material_count = [c for c in data.get('upgrade_material_count')]
-
-    def __str__(self):
-        return self.data.get('name')
-
-class Card_Info:
-    def __init__(self, data):
-        self.name = data.get('name')
-        self.rarity = data.get('rarity')
-        self.id = data.get('card_id')
-        self.elixir = data.get('elixir')
-        self.type = data.get('type')
-        self.arena = data.get('arena')
-        self.description = data.get('description')
-        self.decklink = data.get('decklink')
-
-    def __repr__(self):
-        return f'<Card id={self.id}>'
 
 class Constants(Base):
     '''Represents the constants from cr-api'''
