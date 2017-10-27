@@ -14,9 +14,8 @@
 > **`epic`** - The position of the player's next epic chest    
 **Returns:** int
 
-To get your next chest, look below:    
+To get your next chest in cycle, look below:    
 ```python
-import json
 import crasync
 import aiohttp
 import asyncio
@@ -24,10 +23,9 @@ import asyncio
 async def main():
     client = crasync.Client()
     profile = await client.get_profile('2P0LYQ')
-    async with ctx.session.get('http://api.cr-api.com/constants') as f:
-        constants = await f.json()
-    index = profile.chest_cycle.position % len(constants['chestCycle']['order'])
-    print(constants['chestCycle'][index])
+    constants = await client.get_constants()
+    index = profile.chest_cycle.position % len(constants.chest_cycle)
+    print(constants.chest_cycle[index])
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())
