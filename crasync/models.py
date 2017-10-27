@@ -173,9 +173,6 @@ class Clan(Base):
     def __repr__(self):
         return f'<Clan tag={self.tag}>'
 
-class Clans(Base):
-    def from_data(self, data):
-        self.clans = [Clan(self.client, c) for c in data]
     
 class Profile(Base):
     '''Represents a player profile.
