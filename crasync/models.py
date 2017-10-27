@@ -224,7 +224,7 @@ class Constants(Base):
     def from_data(self, data):
         self.clan = Alliance(data.get('alliance'))
         self.arena = [Arena(c) for c in data.get('arenas')]
-        self.badges = [{data['badges'][c], c} for c in data.get('badges')]
+        self.badges = [dict({data['badges'][c], c}) for c in data.get('badges')]
         self.chest_cycle = [c for c in data.get('chestCycle').get('order')]
         self.country_codes = [Country(c) for c in data.get('countryCodes')]
         self.rarities = [Rarity(c) for c in data.get('rarities')]
