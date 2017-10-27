@@ -34,8 +34,8 @@ class Client:
             else:
                 raise ConnectionError(f'API not responding: {resp.status}')
                 
-        if "error" in data:
-            return None
+        if 'error' in data:
+            raise NameError('Invalid Tag')
 
         if isinstance(data, list):
             return [Profile(self, c) for c in data]
@@ -47,7 +47,7 @@ class Client:
 
         if ', ' in tags:
             raise SyntaxError("Read the docs please")
-            
+
         tags = ','.join(tags)
 
         url = f'{self.BASE}/clan/{tags}'
@@ -58,8 +58,8 @@ class Client:
             else:
                 raise ConnectionError(f'API not responding: {resp.status}')
                 
-        if "error" in data:
-            return None
+        if 'error' in data:
+            raise NameError('Invalid Tag')
 
         if isinstance(data, list):
             return [Clan(self, c) for c in data]
