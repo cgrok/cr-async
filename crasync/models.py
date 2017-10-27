@@ -7,16 +7,17 @@ class Base:
     def __init__(self, client, data):
         self.client = client
         self.raw_data = data
+        self.name = data.get('name')
         self.tag = data.get('tag')
-        self.from_data(data)
+        #self.from_data(data)
         endpoint = type(self).__name__.lower()
         self.url = f'{client.BASE}/{endpoint}/{self.tag}'
 
     def __str__(self):
         return f'{self.name} (#{self.tag})'
        
-    async def from_data(self):
-        raise NotImplemented
+    #async def from_data(self):
+        #raise NotImplementedError
 
     async def update(self):
 
@@ -24,7 +25,7 @@ class Base:
             data = await resp.json()
 
         self.raw_data = data
-        self.from_data(data)
+        #self.from_data(data)
 
         return self
 
@@ -36,7 +37,6 @@ class ClanChest:
 
 class Arena:
     def __init__(self, data):
-        self.raw_data = data
         self.name = data.get('name')
         self.number = data.get('arenaID')
         self.trophies = data.get('trophyLimit')
@@ -46,7 +46,7 @@ class Arena:
         return f"http://api.cr-api.com{self.raw_data.get('imageURL')}"
 
     def __str__(self):
-        return self.data.get('arena')
+        return self.name
 
 class Shop:
     def __init__(self, data):
@@ -105,13 +105,15 @@ class Alliance:
 
 class Country:
     def __init__(self, data):
+        self.name = data.get('name')
         self.is_country = data.get('isCountry')
         
     def __str__(self):
-        return self.raw_data.get('name')
+        return self.name
 
 class Rarity:
     def __init__(self, data):
+        self.name =  data.get('name')
         self.balance_multiplier = data.get('balance_multiplier')
         self.chance_weight = data.get('chance_weight')
         self.clone_relative_level = data.get('clone_relative_level')
@@ -130,7 +132,7 @@ class Rarity:
         self.upgrade_material_count = [c for c in data.get('upgrade_material_count')]
 
     def __str__(self):
-        return self.data.get('name')
+        return self.name
 
 class CardInfo:
     def __init__(self, data):
