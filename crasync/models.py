@@ -132,7 +132,7 @@ class Rarity:
     def __str__(self):
         return self.data.get('name')
 
-class Card_Info:
+class CardInfo:
     def __init__(self, data):
         self.name = data.get('name')
         self.rarity = data.get('rarity')
@@ -228,4 +228,4 @@ class Constants(Base):
         self.chest_cycle = [c for c in data.get('chestCycle').get('order')]
         self.country_codes = [Country(c) for c in data.get('countryCodes')]
         self.rarities = [Rarity(c) for c in data.get('rarities')]
-        self.card = [Card_Info(c) for c in data.get('rarities')]
+        self.card = [CardInfo(c) for c in data.get('rarities')]
