@@ -107,8 +107,8 @@ class Country:
     def __init__(self, data):
         self.is_country = data.get('isCountry')
         
-        def __str__(self):
-            return data.get('name')
+    def __str__(self):
+        return self.raw_data.get('name')
 
 class Rarity:
     def __init__(self, data):
