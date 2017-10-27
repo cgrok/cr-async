@@ -48,3 +48,17 @@ class Client:
 
         return Clan(self, data)
 
+    async def get_constants(self):
+        '''Get a profile object using a tag.'''
+
+        url = f'{self.BASE}/constants'
+
+        async with self.session.get(url) as resp:
+            if resp.status == 200:
+                data = await resp.json()
+            else:
+                print('API is down. Please be patient.')
+                return None
+
+        return Constants(self, data)
+
