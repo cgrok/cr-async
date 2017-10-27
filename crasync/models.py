@@ -37,6 +37,7 @@ class ClanChest:
 
 class Arena:
     def __init__(self, data):
+        self.raw_data = data
         self.name = data.get('name')
         self.number = data.get('arenaID')
         self.trophies = data.get('trophyLimit')
