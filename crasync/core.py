@@ -72,8 +72,7 @@ class Client:
     async def get_profile(self, *tags):
         '''Get a profile object using tag(s)'''
 
-        tags = ','.join(tags)
-        url = f'{self.BASE}/profile/{tags}'
+        url = '{0.BASE}/profile/{}'.format(self, ','.join(tags))
 
         data = await self.request(url)
                 
@@ -87,7 +86,7 @@ class Client:
     async def get_clan(self, *tags):
         '''Get a clan object using tag(s)'''
 
-        url = f'{self.BASE}/clan/{','.join(tags)}'
+        url = '{0.BASE}/clan/{}'.format(self, ','.join(tags))
 
         data = await self.request(url)
                 
@@ -101,7 +100,7 @@ class Client:
     async def get_constants(self):
         '''Get clash royale constants.'''
 
-        url = f'{self.BASE}/constants'
+        url = self.BASE + '/constants'
 
         data = await self.request(url)
 
@@ -112,7 +111,7 @@ class Client:
         call get_clan() on each of the ClanInfo objects 
         to get full clan info'''
 
-        url = f'{self.BASE}/top/clans'
+        url = self.BASE + '/top/clans'
 
         data = await self.request(url)
 

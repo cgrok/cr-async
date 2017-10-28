@@ -35,7 +35,7 @@ class Base:
         self.tag = data.get('tag')
         self.from_data(data)
         endpoint = type(self).__name__.lower()
-        self.url = f'{client.BASE}/{endpoint}/{self.tag}'
+        self.url = '{0.client.BASE}/{endpoint}/{0.tag}'.format(self)
        
     async def from_data(self):
         return NotImplemented
@@ -51,12 +51,14 @@ class Base:
         return self
 
 class ClanChest:
+    '''Represents a clan chest'''
     def __init__(self, data):
         self.crowns = data.get('clanChestCrowns')
         self.percent = data.get('clanChestCrownsPercent')
         self.required = data.get('clanChestCrownsRequired')
 
 class Arena:
+    '''represents an arena'''
     def __init__(self, data):
         self.raw_data = data
         self.name = data.get('name')
@@ -65,18 +67,20 @@ class Arena:
 
     @property
     def image_url(self):
-        return f"http://api.cr-api.com{self.raw_data.get('imageURL')}"
+        return "http://api.cr-api.com" + self.raw_data.get('imageURL')
 
     def __str__(self):
         return self.name
 
 class Shop:
+    '''Represents shop offers'''
     def __init__(self, data):
         self.legendary = data.get('legendary')
         self.epic = data.get('epic')
         self.arena = data.get('arena')
 
 class Cycle:
+    '''Represents your chest cycle'''
     def __init__(self, data):
         self.position = data.get('position')
         self.super_magical = data.get('superMagicalPos')
@@ -84,6 +88,7 @@ class Cycle:
         self.epic = data.get('epicPos')
 
 class Card:
+    '''Represents a Clash Royale card'''
     def __init__(self, data):
         self.name = data.get('name')
         self.rarity = data.get('rarity')
@@ -101,6 +106,7 @@ class Card:
         return f'<Card id={self.id}>'
 
 class Member:
+    '''Represents a member of a clan'''
     def __init__(self, client, clan, data):
         self.clan = clan
         self.client = client
@@ -116,10 +122,10 @@ class Member:
         self.tag = data.get('tag')
 
     def __str__(self):
-        return f'{self.name} (#{self.tag})'
+        return '{self.name} (#{0.tag})'.format(self)
 
     def __repr__(self):
-        return f'<Member tag={self.tag}>'
+        return '<Member tag={0.tag}>'.format(self)
 
     def get_profile(self):
         return self.client.get_profile(self.tag)
@@ -172,7 +178,7 @@ class CardInfo:
         self.decklink = data.get('decklink')
 
     def __repr__(self):
-        return f'<Card id={self.id}>'
+        return '<Card id={0.id}>'.format(self)
 
 class ClanInfo:
     def __init__(self, client, data):
@@ -194,10 +200,10 @@ class ClanInfo:
         return self.client.get_clan(self.tag)
 
     def __repr__(self):
-        return f'<ClanInfo tag={self.tag}>'
+        return '<ClanInfo tag={0.tag}>'.format(self)
 
     def __str__(self):
-        return f'{self.name} (#{self.tag})'
+        return '{0.name} (#{0.tag})'.format(self)
 
 
 class Clan(Base):
@@ -222,10 +228,10 @@ class Clan(Base):
         return "http://api.cr-api.com" + url
 
     def __repr__(self):
-        return f'<Clan tag={self.tag}>'
+        return '<Clan tag={0.tag}>'.format(self)
 
     def __str__(self):
-        return f'{self.name} (#{self.tag})'
+        return '{0.name} (#{0.tag})'.formate(self)
     
 class Profile(Base):
     '''Represents a player profile.
@@ -274,10 +280,10 @@ class Profile(Base):
         return self.client.get_clan(self.clan_tag)
 
     def __repr__(self):
-        return f'<Profile tag={self.tag}>'
+        return '<Profile tag={0.tag}>'.format(self)
 
     def __str__(self):
-        return f'{self.name} (#{self.tag})'
+        return '{0.name} (#{0.tag})'.format(self)
 
 class Constants(Base):
     '''Represents the constants from cr-api'''
