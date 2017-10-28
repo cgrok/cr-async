@@ -1,3 +1,27 @@
+'''
+MIT License
+
+Copyright (c) 2017 grokkers
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+'''
+
 class Base:
     '''
     Base class for models. Only thing that 
@@ -12,15 +36,12 @@ class Base:
         self.from_data(data)
         endpoint = type(self).__name__.lower()
         self.url = f'{client.BASE}/{endpoint}/{self.tag}'
-
-    def __str__(self):
-        return f'{self.name} (#{self.tag})'
        
     async def from_data(self):
-        raise NotImplementedError
+        return NotImplemented
 
     async def update(self):
-
+        '''Update an object with current info.'''
         async with self.client.session.get(self.url) as resp:
             data = await resp.json()
 
@@ -80,7 +101,8 @@ class Card:
         return f'<Card id={self.id}>'
 
 class Member:
-    def __init__(self, client, data):
+    def __init__(self, client, clan, data):
+        self.clan = clan
         self.client = client
         self.name = data.get('name')
         self.arena = Arena(data.get('arena'))
@@ -93,6 +115,9 @@ class Member:
         self.crowns = data.get('clanChestCrowns')
         self.tag = data.get('tag')
 
+    def __str__(self):
+        return f'{self.name} (#{self.tag})'
+
     def __repr__(self):
         return f'<Member tag={self.tag}>'
 
@@ -101,8 +126,8 @@ class Member:
 
 class Alliance:
     def __init__(self, data):
-        self.roles = [c for c in data.get('roles')]
-        self.types = [c for c in data.get('types')]
+        self.roles = data.get('roles')
+        self.types = data.get('types')
 
 class Country:
     def __init__(self, data):
@@ -149,6 +174,32 @@ class CardInfo:
     def __repr__(self):
         return f'<Card id={self.id}>'
 
+class ClanInfo:
+    def __init__(self, client, data):
+        self.raw_data = data
+        self.name = data.get('name')
+        self.tag = data.get('tag')
+        self.trophies = data.get('trophies')
+        self.region = data.get('region').get('name')
+        self.member_count = data.get('memberCount')
+        self.rank = data.get('rank')
+        self.previous_rank = data.get('previousRank')
+
+    @property
+    def badge_url(self):
+        url = self.raw_data.get('badge').get('url')
+        return "http://api.cr-api.com" + url
+
+    def get_clan(self):
+        return self.client.get_clan(self.tag)
+
+    def __repr__(self):
+        return f'<ClanInfo tag={self.tag}>'
+
+    def __str__(self):
+        return f'{self.name} (#{self.tag})'
+
+
 class Clan(Base):
     '''Represents a clan'''
 
@@ -163,15 +214,18 @@ class Clan(Base):
         self.type_name = data.get('typeName')
         self.region = data.get('region').get('name')
         self.clan_chest = ClanChest(data.get('clanChest'))
-        self.members = [Member(self.client, m) for m in data.get('members')]
+        self.members = [Member(self.client, self, m) for m in data.get('members')]
 
     @property
     def badge_url(self):
         url = self.raw_data.get('badge').get('url')
-        return f"http://api.cr-api.com{url}"
+        return "http://api.cr-api.com" + url
 
     def __repr__(self):
         return f'<Clan tag={self.tag}>'
+
+    def __str__(self):
+        return f'{self.name} (#{self.tag})'
     
 class Profile(Base):
     '''Represents a player profile.
@@ -214,13 +268,16 @@ class Profile(Base):
         if not url:
             return None
         else:
-            return f"http://api.cr-api.com{url}"
+            return "http://api.cr-api.com" + url
+
+    def get_clan(self):
+        return self.client.get_clan(self.clan_tag)
 
     def __repr__(self):
         return f'<Profile tag={self.tag}>'
 
-    def get_clan(self):
-        return self.client.get_clan(self.clan_tag)
+    def __str__(self):
+        return f'{self.name} (#{self.tag})'
 
 class Constants(Base):
     '''Represents the constants from cr-api'''
@@ -232,3 +289,7 @@ class Constants(Base):
         self.country_codes = [Country(c) for c in data.get('countryCodes')]
         self.rarities = [Rarity(c) for c in data.get('rarities')]
         self.card = [CardInfo(c) for c in data.get('rarities')]
+
+    def __repr__(self):
+        return '<Clash Royale Constants Object>'
+
