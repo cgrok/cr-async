@@ -51,7 +51,7 @@ class Client:
     async def request(self, url):
         async with self.session.get(url) as resp:
             data = await resp.json()
-            
+
             # Request was successful 
             if 300 > resp.status >= 200:
                 return data
