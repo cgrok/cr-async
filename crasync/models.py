@@ -35,7 +35,7 @@ class Base:
         self.tag = data.get('tag')
         self.from_data(data)
         endpoint = type(self).__name__.lower()
-        self.url = '{0.client.BASE}/{endpoint}/{0.tag}'.format(self)
+        self.url = '{0.client.BASE}/{1}/{0.tag}'.format(self, endpoint)
        
     async def from_data(self):
         return NotImplemented
@@ -231,7 +231,7 @@ class Clan(Base):
         return '<Clan tag={0.tag}>'.format(self)
 
     def __str__(self):
-        return '{0.name} (#{0.tag})'.formate(self)
+        return '{0.name} (#{0.tag})'.format(self)
     
 class Profile(Base):
     '''Represents a player profile.
