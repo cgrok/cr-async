@@ -25,7 +25,7 @@ SOFTWARE.
 import aiohttp
 import asyncio
 from .models import Profile, Clan, Constants, ClanInfo
-from .errors import RequestError, NotFound, InvalidTag
+from .errors import RequestError, NotFoundError, ServerError
 
 class Client:
 
