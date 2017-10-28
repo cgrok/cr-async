@@ -11,4 +11,5 @@ setup(
     download_url='https://github.com/grokkers/cr-async/archive/v1.0.0-alpha.tar.gz',  # I'll explain this in a second
     keywords=['clashroyale'],  # arbitrary keywords
     classifiers=[],
+    install_requires=['aiohttp>=2.0.0,<2.3.0']
 )
