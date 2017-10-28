@@ -18,9 +18,11 @@ class Client:
     def __init__(self, session=None):
         self.session = session or aiohttp.ClientSession()
 
-
-    async def get_profile(self, *, tags):
+    async def get_profile(self, *tags):
         '''Get a profile object using tag(s)'''
+
+        if ', ' in tags:
+            raise SyntaxError("Read the docs please")
 
         tags = ','.join(tags)
 
@@ -31,6 +33,9 @@ class Client:
                 data = await resp.json()
             else:
                 raise ConnectionError(f'API not responding: {resp.status}')
+                
+        if 'error' in data:
+            raise NameError('Invalid Tag')
 
         if isinstance(data, list):
             return [Profile(self, c) for c in data]
@@ -39,6 +44,9 @@ class Client:
 
     async def get_clan(self, *tags):
         '''Get a clan object using tag(s)'''
+
+        if ', ' in tags:
+            raise SyntaxError("Read the docs please")
 
         tags = ','.join(tags)
 
@@ -49,6 +57,9 @@ class Client:
                 data = await resp.json()
             else:
                 raise ConnectionError(f'API not responding: {resp.status}')
+                
+        if 'error' in data:
+            raise NameError('Invalid Tag')
 
         if isinstance(data, list):
             return [Clan(self, c) for c in data]
