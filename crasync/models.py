@@ -103,7 +103,7 @@ class Card:
         self.decklink = data.get('decklink')
 
     def __repr__(self):
-        return f'<Card id={self.id}>'
+        return '<Card id={0.id}>'.format(self)
 
 class Member:
     '''Represents a member of a clan'''
