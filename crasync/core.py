@@ -25,6 +25,7 @@ SOFTWARE.
 import aiohttp
 import asyncio
 from .models import Profile, Clan, Constants, ClanInfo
+from .errors import RequestError, NotFound, InvalidTag
 
 class Client:
 
@@ -47,24 +48,35 @@ class Client:
     async def __aexit__(self, exc_type, exc_value, traceback):
         self.session.close()
 
+    async def request(self, url):
+        async with self.session.get(url) as resp:
+            data = await resp.json()
+
+            # Request was successful 
+            if 300 > resp.status >= 200:
+                return data
+
+            # Tag not found
+            if resp.status == 404:
+                raise NotFoundError(resp, data)
+
+            # Something wrong with the api servers :(
+            if resp.stats > 500:
+                raise ServerError(resp, data)
+
+            # Everything else
+            else:
+                raise RequestError(resp, data)
+
+
     async def get_profile(self, *tags):
         '''Get a profile object using tag(s)'''
-
-        if ', ' in tags:
-            raise SyntaxError("Read the docs please")
 
         tags = ','.join(tags)
         url = f'{self.BASE}/profile/{tags}'
 
-        async with self.session.get(url) as resp:
-            if resp.status == 200:
-                data = await resp.json()
-            else:
-                raise ConnectionError(f'API not responding: {resp.status}')
+        data = await self.request(url)
                 
-        if 'error' in data:
-            raise NameError('Invalid Tag')
-
         if isinstance(data, list):
             return [Profile(self, c) for c in data]
         else:
@@ -75,21 +87,10 @@ class Client:
     async def get_clan(self, *tags):
         '''Get a clan object using tag(s)'''
 
-        if ', ' in tags: #hahaha
-            raise SyntaxError("Read the docs please")
+        url = f'{self.BASE}/clan/{','.join(tags)}'
 
-        tags = ','.join(tags)
-        url = f'{self.BASE}/clan/{tags}'
-
-        async with self.session.get(url) as resp:
-            if resp.status == 200:
-                data = await resp.json()
-            else:
-                raise ConnectionError(f'API not responding: {resp.status}')
+        data = await self.request(url)
                 
-        if 'error' in data:
-            raise NameError('Invalid Tag')
-
         if isinstance(data, list):
             return [Clan(self, c) for c in data]
         else:
@@ -102,11 +103,7 @@ class Client:
 
         url = f'{self.BASE}/constants'
 
-        async with self.session.get(url) as resp:
-            if resp.status == 200:
-                data = await resp.json()
-            else:
-                raise ConnectionError(f'API not responding: {resp.status}')
+        data = await self.request(url)
 
         return Constants(self, data)
 
@@ -117,10 +114,6 @@ class Client:
 
         url = f'{self.BASE}/top/clans'
 
-        async with self.session.get(url) as resp:
-            if resp.status == 200:
-                data = await resp.json()
-            else:
-                raise ConnectionError(f'API not responding: {resp.status}')
+        data = await self.request(url)
 
         return [ClanInfo(self, c) for c in data.get('clans')]
