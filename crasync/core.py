@@ -41,6 +41,12 @@ class Client:
     def __init__(self, session=None):
         self.session = session or aiohttp.ClientSession()
 
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(self, exc_type, exc_value, traceback):
+        self.session.close()
+
     async def get_profile(self, *tags):
         '''Get a profile object using tag(s)'''
 
@@ -63,6 +69,8 @@ class Client:
             return [Profile(self, c) for c in data]
         else:
             return Profile(self, data)
+
+    get_profiles = get_profile
 
     async def get_clan(self, *tags):
         '''Get a clan object using tag(s)'''
