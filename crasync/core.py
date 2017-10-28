@@ -51,7 +51,7 @@ class Client:
     async def request(self, url):
         async with self.session.get(url) as resp:
             data = await resp.json()
-
+            
             # Request was successful 
             if 300 > resp.status >= 200:
                 return data
@@ -71,7 +71,6 @@ class Client:
 
     async def get_profile(self, *tags):
         '''Get a profile object using tag(s)'''
-
         url = '{0.BASE}/profile/{}'.format(self, ','.join(tags))
 
         data = await self.request(url)
@@ -85,7 +84,6 @@ class Client:
 
     async def get_clan(self, *tags):
         '''Get a clan object using tag(s)'''
-
         url = '{0.BASE}/clan/{}'.format(self, ','.join(tags))
 
         data = await self.request(url)
@@ -99,7 +97,6 @@ class Client:
 
     async def get_constants(self):
         '''Get clash royale constants.'''
-
         url = self.BASE + '/constants'
 
         data = await self.request(url)
@@ -110,7 +107,6 @@ class Client:
         '''Get a list of top clans, info is only brief, 
         call get_clan() on each of the ClanInfo objects 
         to get full clan info'''
-
         url = self.BASE + '/top/clans'
 
         data = await self.request(url)
