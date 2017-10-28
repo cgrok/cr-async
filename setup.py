@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='crasync',
     packages=['crasync'],  # this must be the same as the name above
-    version='v1.1.3',
+    version='v1.1.4',
     description='An async wrapper for cr-api.com',
     author='verixx',
     license='MIT',

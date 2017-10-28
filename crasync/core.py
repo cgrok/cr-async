@@ -71,7 +71,7 @@ class Client:
 
     async def get_profile(self, *tags):
         '''Get a profile object using tag(s)'''
-        url = '{0.BASE}/profile/{}'.format(self, ','.join(tags))
+        url = '{0.BASE}/profile/{1}'.format(self, ','.join(tags))
 
         data = await self.request(url)
                 
@@ -84,7 +84,7 @@ class Client:
 
     async def get_clan(self, *tags):
         '''Get a clan object using tag(s)'''
-        url = '{0.BASE}/clan/{}'.format(self, ','.join(tags))
+        url = '{0.BASE}/clan/{1}'.format(self, ','.join(tags))
 
         data = await self.request(url)
                 
