@@ -45,7 +45,7 @@ class Client:
     async def get_clan(self, *tags):
         '''Get a clan object using tag(s)'''
 
-        if ', ' in tags:
+        if ', ' in tags: #hahaha
             raise SyntaxError("Read the docs please")
 
         tags = ','.join(tags)
@@ -69,7 +69,7 @@ class Client:
     get_clans = get_clan
 
     async def get_constants(self):
-        '''Get a profile object using a tag.'''
+        '''Get clash royale constants.'''
 
         url = f'{self.BASE}/constants'
 
