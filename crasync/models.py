@@ -138,14 +138,19 @@ class Alliance:
 class Country:
     def __init__(self, data):
         self.name = data.get('name')
-        self.is_country = data.get('isCountry')
+        if data.get('isCountry') == 'true':
+            self.is_country = True
+        elif data.get('isCountry') == 'false':
+            self.is_country = False
+        else:
+            self.is_country = data.get('isCountry')
         
     def __str__(self):
         return self.name
 
 class Rarity:
     def __init__(self, data):
-        self.name =  data.get('name')
+        self.name = data.get('name')
         self.balance_multiplier = data.get('balance_multiplier')
         self.chance_weight = data.get('chance_weight')
         self.clone_relative_level = data.get('clone_relative_level')
