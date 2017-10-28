@@ -48,6 +48,9 @@ class Client:
     async def __aexit__(self, exc_type, exc_value, traceback):
         self.session.close()
 
+    def close(self):
+        self.session.close()
+
     async def request(self, url):
         async with self.session.get(url) as resp:
             data = await resp.json()
