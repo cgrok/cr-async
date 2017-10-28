@@ -212,7 +212,7 @@ class Clan(Base):
     def from_data(self, data):
         self.name = data.get('name')
         self.score = data.get('score')
-        self.required_trophies = data.get('required_trophies')
+        self.required_trophies = data.get('requiredScore')
         self.donations = data.get('donations')
         self.rank = data.get('currentRank')
         self.description = data.get('description')
