@@ -10,15 +10,15 @@ async def main():
         print(profile)
         print(profile.current_trophies)
 
-        await asyncio.sleep(2)
         await profile.update() # updating the info
 
         clan = await profile.get_clan() # get the players full clan info
 
+        chests = profile.get_chests()
+
         print(clan)
         print(len(clan.members))
 
-        await asyncio.sleep(2)
         await clan.update() # updating the info
 
         highest = await clan.members[0].get_profile()
