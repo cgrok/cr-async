@@ -60,13 +60,13 @@
 **Returns:** [Arena](arena.md)
 
 > **`clan_tag`** - The tag of the clan the player is currently in  
-**Returns:** int
+**Returns:** int or None
 
 > **`clan_tag`** - The name of the clan the player is currently in    
-**Returns:** str
+**Returns:** str or None
 
 > **`clan_role`** - The role of the player in his current clan    
-**Returns:** str
+**Returns:** str or None
 
 > **`shop_offers`** - The time taken for each shop offer to come to the player's shop    
 **Returns:** Shop
@@ -80,4 +80,5 @@
 #### Methods
 
 ##### *coroutine* **`get_clan()`**
-  * Returns the full clan object corresponding to the player's clan.
+  * Returns the full clan object corresponding to the player's clan.    
+  Returns NotImplementedError if player is not in a Clan
