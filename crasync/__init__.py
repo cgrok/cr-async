@@ -56,5 +56,5 @@ async def get_constants():
         return await client.get_constants()
 
 async def get_top_clans():
-    async with Client as client:
+    async with Client() as client:
         return await client.get_top_clans()
