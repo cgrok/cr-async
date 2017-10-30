@@ -255,7 +255,7 @@ class Profile(Base):
         self.name_changed = data.get('nameChanged')
         self.global_rank = data.get('globalRank')
         self.current_trophies = data.get('trophies')
-        self.highest_trophies = stats.get('challengeCardsWon')
+        self.highest_trophies = stats.get('maxTrophies')
         self.legend_trophies = data.get('legendaryTrophies')
         self.tournament_cards_won = stats.get('tournamentCardsWon')
         self.challenge_cards_won = stats.get('challengeCardsWon')
