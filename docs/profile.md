@@ -34,7 +34,7 @@
 > **`global_rank`** - The global rank of the player.    
 **Returns**: int or None
 
-> **`current_trophies`** - The number of trophies the player is currently at.
+> **`current_trophies`** - The number of trophies the player is currently at.    
 **Returns:** int
   
 > **`highest_trophies`** - The highest trophies the player has reached.    
@@ -68,6 +68,9 @@
 **Returns:** int
 
 > **`draws`** - The amount of games drawn by the player.    
+**Returns:** int
+
+> **`win_streak`** - The current win streak of the player.    
 **Returns:** int
 
 > **`arena`** - An arena object representing the player's arena.    

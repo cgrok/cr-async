@@ -288,9 +288,9 @@ class Profile(Base):
         self.wins = games.get('wins')
         self.losses = games.get('losses')
         self.draws = games.get('draws')
-        self.winstreak = 0
+        self.win_streak = 0
         if games.get('currentWinStreak') > 0:
-            self.winstreak = games.get('currentWinStreak')
+            self.win_streak = games.get('currentWinStreak')
         self.arena = Arena(data.get('arena'))
         self.shop_offers = Shop(data.get('shopOffers'))
         self.chest_cycle = Cycle(data.get('chestCycle'))
