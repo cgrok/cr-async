@@ -303,7 +303,7 @@ class Profile(Base):
             return 'Epic'
         if index == self.chest_cycle.legendary:
             return 'Legendary'
-        return CHESTS[index % len(CHESTS)-1]
+        return CHESTS[index % len(CHESTS)]
 
     def get_clan(self):
         if self.clan_tag is None:
