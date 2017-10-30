@@ -81,4 +81,18 @@
 
 ##### *coroutine* **`get_clan()`**
   * Returns the full clan object corresponding to the player's clan.    
-  Returns NotImplementedError if player is not in a Clan
+  Returns ValueError if player is not in a clan
+
+  * Return Type: [Clan](clan.md)
+
+##### **`get_chest(index=0)`**
+  * Returns the `index`'th chest of the player.    
+  If player's next chest is `Super Magical`, it returns `Super Magical` when you do `profile.get_clan(0)`
+
+  * Return Type: str
+
+##### **`clan_badge_url`**
+  * Returns the clan URL of the player's current clan.    
+  Returns None if player is not in a clan.
+
+  * Return Type: str or None

@@ -107,7 +107,7 @@ class CardInfo:
         self.raw_data = data
         self.name = data.get('name')
         self.rarity = data.get('rarity')
-        self.id = data.get('card_id')
+        self.card_id = data.get('card_id')
         self.elixir = data.get('elixir')
         self.type = data.get('type')
         self.arena = data.get('arena')

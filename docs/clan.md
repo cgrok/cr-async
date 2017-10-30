@@ -34,3 +34,11 @@
 
 > **`members`** - The clan's members    
 **Returns:** list [[Member](member.md), [Member](member.md), [Member](member.md)... [Member](member.md)]
+
+#### Methods
+
+##### **`get_clan()`**
+  * Returns the full clan object corresponding to the player's clan.    
+  Returns ValueError if player is not in a clan
+
+  * Return Type: [Clan](clan.md)
