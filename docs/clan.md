@@ -26,7 +26,7 @@
 > **`type_name`** - The clan's type (Open, Invite Only, Closed)    
 **Returns:** str
 
-> **`reigon`** - The clan's reigon    
+> **`region`** - The clan's region    
 **Returns:** str
 
 > **`clan_chest`** - The clan's clan chest data    
