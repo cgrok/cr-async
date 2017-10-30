@@ -89,9 +89,15 @@ class Arena:
 class Shop:
     '''Represents shop offers'''
     def __init__(self, data):
-        self.legendary = data.get('legendary')
-        self.epic = data.get('epic')
-        self.arena = data.get('arena')
+        self.legendary = 0
+        self.epic = 0
+        self.arena = 0
+        if data.get('legendary') > 0:
+            self.legendary = data.get('legendary')
+        if data.get('epic') > 0:
+            self.epic = data.get('epic')
+        if data.get('arena') > 0:
+            self.arena = data.get('arena')
 
 class Cycle:
     '''Represents your chest cycle'''
@@ -282,6 +288,9 @@ class Profile(Base):
         self.wins = games.get('wins')
         self.losses = games.get('losses')
         self.draws = games.get('draws')
+        self.winstreak = 0
+        if games.get('currentWinStreak') > 0:
+            self.winstreak = games.get('currentWinStreak')
         self.arena = Arena(data.get('arena'))
         self.shop_offers = Shop(data.get('shopOffers'))
         self.chest_cycle = Cycle(data.get('chestCycle'))
