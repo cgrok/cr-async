@@ -25,5 +25,8 @@ async def main():
             highest = await clan.members[0].get_profile() # top player
             print('Clan Top Player: '+ str(highest))
 
+        constants = await client.get_constants()
+        print(constants.cards['knight'].name) # Card constants.
+
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())

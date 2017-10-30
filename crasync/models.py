@@ -320,7 +320,7 @@ class Constants(Base):
         self.chest_cycle = [c for c in data.get('chestCycle').get('order')]
         self.country_codes = [Country(c) for c in data.get('countryCodes')]
         self.rarities = [Rarity(c) for c in data.get('rarities')]
-        self.card = [CardInfo(c) for c in data.get('cards')]
+        self.cards = {c['name'].lower():CardInfo(c) for c in data.get('cards')}
 
     def __repr__(self):
         return '<Clash Royale Constants Object>'
