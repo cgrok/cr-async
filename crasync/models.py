@@ -28,6 +28,7 @@ _path = path.join(
     path.dirname(path.realpath(__file__)), 
     'chests.json'
     )
+
 with open(_path) as f:
     CHESTS = json.load(f)
 
