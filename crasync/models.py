@@ -138,7 +138,7 @@ class Member:
         self.tag = data.get('tag')
 
     def __str__(self):
-        return '{self.name} (#{0.tag})'.format(self)
+        return '{0.name} (#{0.tag})'.format(self)
 
     def __repr__(self):
         return '<Member tag={0.tag}>'.format(self)
