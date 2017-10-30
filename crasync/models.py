@@ -191,6 +191,7 @@ class Rarity:
 class ClanInfo:
     def __init__(self, client, data):
         self.raw_data = data
+        self.client = client
         self.name = data.get('name')
         self.tag = data.get('tag')
         self.trophies = data.get('trophies')
