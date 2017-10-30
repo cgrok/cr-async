@@ -28,7 +28,7 @@ from .core import Client
 # METADATA #
 ############
 
-__version__ = 'v1.3.4'
+__version__ = 'v1.3.0'
 __title__ = 'crasync'
 __license__ = 'MIT'
 __author__ = 'verixx'
