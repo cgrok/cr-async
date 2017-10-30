@@ -281,6 +281,8 @@ class Profile(Base):
 
     @property
     def clan_badge_url(self):
+        if self.clan_tag is None:
+            return None
         url = self.raw_data.get('clan').get('badge').get('url')
         if not url:
             return None
@@ -288,7 +290,7 @@ class Profile(Base):
             return "http://api.cr-api.com" + url
 
     def get_chests(self, index:int):
-        with open('crasync/chests.json') as r:
+        with open('chests.json') as r:
             chests = json.load(r)
         index -= 1
         index += self.chest_cycle.position % len(chests)
