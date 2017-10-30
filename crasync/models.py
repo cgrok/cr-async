@@ -296,14 +296,17 @@ class Profile(Base):
 
     def get_chest(self, index=0):
         '''Get your current chest +- the index'''
+        
         index += self.chest_cycle.position
+
         if index == self.chest_cycle.super_magical:
             return 'Super Magical'
         if index == self.chest_cycle.epic:
             return 'Epic'
         if index == self.chest_cycle.legendary:
             return 'Legendary'
-        return CHESTS[index % len(CHESTS)-1]
+
+        return CHESTS[index % len(CHESTS)]
 
     def get_clan(self):
         if self.clan_tag is None:
