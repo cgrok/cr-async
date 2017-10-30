@@ -22,8 +22,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 '''
 import json
-import os
+from os import path
 
+_path = path.join(
+    path.dirname(path.realpath(__file__)), 
+    'chests.json'
+    )
+with open(_path) as f:
+    CHESTS = json.load(f)
 
 class Base:
     '''
@@ -251,8 +257,11 @@ class Profile(Base):
         games = data.get('games')
         clan = data.get('clan')
         self.level = exp.get('level')
-        self.experience = (exp.get('xp'), exp.get('xpRequiredForLevelUp'))
-        self.xp = (exp.get('xp'), exp.get('xpRequiredForLevelUp'))
+        self.experience = (
+            exp.get('xp'), 
+            exp.get('xpRequiredForLevelUp')
+            )
+        self.xp = self.experience
         self.name_changed = data.get('nameChanged')
         self.global_rank = data.get('globalRank')
         self.current_trophies = data.get('trophies')
@@ -280,6 +289,8 @@ class Profile(Base):
             self.clan_name = clan.get('name')
             self.clan_role = clan.get('role')
 
+
+
     @property
     def clan_badge_url(self):
         '''Returns clan badge url'''
@@ -291,17 +302,10 @@ class Profile(Base):
         else:
             return "http://api.cr-api.com" + url
 
-    def get_chests(self, index=0):
+    def get_chest(self, index=0):
         '''Get your current chest +- the index'''
-        path = os.path.join(
-            os.path.dirname(os.path.realpath(__file__)), 
-            'chests.json'
-            )
-        with open(path) as f:
-            chests = json.load(f)
-        index -= 1
-        index += self.chest_cycle.position % len(chests)
-        print(chests[index])
+        index += self.chest_cycle.position % len(CHESTS)
+        return CHESTS[index-1]
 
     def get_clan(self):
         if self.clan_tag is None:
