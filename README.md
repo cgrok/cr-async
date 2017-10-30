@@ -1,7 +1,6 @@
 # cr-async
 
-asynchronous wrapper for http://cr-api.com/
+Asynchronous wrapper for http://cr-api.com/
 
-docs soon to come!
-
-requires python 3.6+ and aiohttp
+Read our docs [here](https://grokkers.github.io/cr-async/#)!    
+Join the support server [here](https://discord.gg/pmQSbAd) and head to the #cr-async channel!
