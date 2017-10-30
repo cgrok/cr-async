@@ -1,6 +1,20 @@
 # Profile
 ?> Represents a clash royale player profile.
 
+#### Methods
+
+##### *coroutine* **`get_clan()`**
+  * Returns the full clan object corresponding to the player's clan.    
+  Returns ValueError if player is not in a clan
+
+  * Return Type: [Clan](clan.md)
+
+##### **`get_chest(index=0)`**
+  * Returns the `index`'th chest of the player.    
+  If player's next chest is `Super Magical`, it returns `Super Magical` when you do `profile.get_clan(0)`
+
+  * Return Type: str
+  
 #### Attributes
 > **`tag`** - The player tag associated with the profile    
 **Returns:** int
@@ -77,22 +91,5 @@
 > **`deck`** - The player's deck    
 **Returns:** list [[Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md)]
 
-#### Methods
-
-##### *coroutine* **`get_clan()`**
-  * Returns the full clan object corresponding to the player's clan.    
-  Returns ValueError if player is not in a clan
-
-  * Return Type: [Clan](clan.md)
-
-##### **`get_chest(index=0)`**
-  * Returns the `index`'th chest of the player.    
-  If player's next chest is `Super Magical`, it returns `Super Magical` when you do `profile.get_clan(0)`
-
-  * Return Type: str
-
-##### **`clan_badge_url`**
-  * Returns the clan URL of the player's current clan.    
-  Returns None if player is not in a clan.
-
-  * Return Type: str or None
+> **`clan_badge_url`** - The profile's clan's badge url. Returns None if user is not in a clan.    
+**Returns:** str or None
