@@ -22,6 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 '''
 import json
+import os
+
 
 class Base:
     '''
@@ -43,8 +45,7 @@ class Base:
 
     async def update(self):
         '''Update an object with current info.'''
-        async with self.client.session.get(self.url) as resp:
-            data = await resp.json()
+        data = await self.client.request(self.url)
 
         self.raw_data = data
         self.from_data(data)
@@ -281,6 +282,7 @@ class Profile(Base):
 
     @property
     def clan_badge_url(self):
+        '''Returns clan badge url'''
         if self.clan_tag is None:
             return None
         url = self.raw_data.get('clan').get('badge').get('url')
@@ -289,16 +291,21 @@ class Profile(Base):
         else:
             return "http://api.cr-api.com" + url
 
-    def get_chests(self, index:int):
-        with open('./chests.json') as r:
-            chests = json.load(r)
+    def get_chests(self, index=0):
+        '''Get your current chest +- the index'''
+        path = os.path.join(
+            os.path.dirname(os.path.realpath(__file__)), 
+            'chests.json'
+            )
+        with open(path) as f:
+            chests = json.load(f)
         index -= 1
         index += self.chest_cycle.position % len(chests)
         print(chests[index])
 
     def get_clan(self):
         if self.clan_tag is None:
-            raise NotImplementedError('Profile has no Clan')
+            raise ValueError('Profile has no Clan')
         return self.client.get_clan(self.clan_tag)
 
     def __repr__(self):
