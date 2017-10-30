@@ -191,6 +191,7 @@ class Rarity:
 class ClanInfo:
     def __init__(self, client, data):
         self.raw_data = data
+        self.client = client
         self.name = data.get('name')
         self.tag = data.get('tag')
         self.trophies = data.get('trophies')
@@ -275,11 +276,10 @@ class Profile(Base):
         self.shop_offers = Shop(data.get('shopOffers'))
         self.chest_cycle = Cycle(data.get('chestCycle'))
         self.deck = [PlayerCard(c) for c in data.get('currentDeck')]
-        if clan is None:
-            self.clan_tag = None
-            self.clan_name = None
-            self.clan_role = None
-        else:
+        self.clan_tag = None
+        self.clan_name = None
+        self.clan_role = None
+        if clan is not None:
             self.clan_tag = clan.get('tag')
             self.clan_name = clan.get('name')
             self.clan_role = clan.get('role')
@@ -292,8 +292,7 @@ class Profile(Base):
         url = self.raw_data.get('clan').get('badge').get('url')
         if not url:
             return None
-        else:
-            return "http://api.cr-api.com" + url
+        return "http://api.cr-api.com" + url
 
     def get_chest(self, index=0):
         '''Get your current chest +- the index'''
@@ -324,4 +323,3 @@ class Constants(Base):
 
     def __repr__(self):
         return '<Clash Royale Constants Object>'
-
