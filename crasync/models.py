@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 '''
+import json
 
 class Base:
     '''
@@ -280,6 +281,13 @@ class Profile(Base):
             return None
         else:
             return "http://api.cr-api.com" + url
+
+    def get_chests(self, index:int):
+        with open('crasync/chests.json') as r:
+            chests = json.load(r)
+        index -= 1
+        index += self.chest_cycle.position % len(chests)
+        print(chests[index])
 
     def get_clan(self):
         return self.client.get_clan(self.clan_tag)
