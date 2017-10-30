@@ -290,7 +290,7 @@ class Profile(Base):
             return "http://api.cr-api.com" + url
 
     def get_chests(self, index:int):
-        with open('chests.json') as r:
+        with open('./chests.json') as r:
             chests = json.load(r)
         index -= 1
         index += self.chest_cycle.position % len(chests)
