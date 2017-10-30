@@ -29,7 +29,7 @@ _path = path.join(
     'chests.json'
     )
 
-with open(_path) as f:
+with open(_path.replace('\\\\','/')) as f:
     CHESTS = json.load(f)
 
 class Base:
