@@ -96,14 +96,12 @@ class Cycle:
         self.legendary = data.get('legendaryPos')
         self.epic = data.get('epicPos')
 
-class Card:
+class CardInfo:
     '''Represents a Clash Royale card'''
     def __init__(self, data):
+        self.raw_data = data
         self.name = data.get('name')
         self.rarity = data.get('rarity')
-        self.level = data.get('level')
-        self.count = data.get('count')
-        self.to_upgrade = data.get('requiredForUpgrade')
         self.id = data.get('card_id')
         self.elixir = data.get('elixir')
         self.type = data.get('type')
@@ -113,6 +111,15 @@ class Card:
 
     def __repr__(self):
         return '<Card id={0.id}>'.format(self)
+
+class PlayerCard(CardInfo):
+
+    def __init__(self, data):
+        super().__init__(data)
+        self.level = data.get('level')
+        self.count = data.get('count')
+        self.to_upgrade = data.get('requiredForUpgrade')
+
 
 class Member:
     '''Represents a member of a clan'''
@@ -180,19 +187,6 @@ class Rarity:
     def __str__(self):
         return self.name
 
-class CardInfo:
-    def __init__(self, data):
-        self.name = data.get('name')
-        self.rarity = data.get('rarity')
-        self.id = data.get('card_id')
-        self.elixir = data.get('elixir')
-        self.type = data.get('type')
-        self.arena = data.get('arena')
-        self.description = data.get('description')
-        self.decklink = data.get('decklink')
-
-    def __repr__(self):
-        return '<Card id={0.id}>'.format(self)
 
 class ClanInfo:
     def __init__(self, client, data):
@@ -280,7 +274,7 @@ class Profile(Base):
         self.arena = Arena(data.get('arena'))
         self.shop_offers = Shop(data.get('shopOffers'))
         self.chest_cycle = Cycle(data.get('chestCycle'))
-        self.deck = [Card(c) for c in data.get('currentDeck')]
+        self.deck = [PlayerCard(c) for c in data.get('currentDeck')]
         if clan is None:
             self.clan_tag = None
             self.clan_name = None
@@ -289,8 +283,6 @@ class Profile(Base):
             self.clan_tag = clan.get('tag')
             self.clan_name = clan.get('name')
             self.clan_role = clan.get('role')
-
-
 
     @property
     def clan_badge_url(self):
@@ -328,7 +320,7 @@ class Constants(Base):
         self.chest_cycle = [c for c in data.get('chestCycle').get('order')]
         self.country_codes = [Country(c) for c in data.get('countryCodes')]
         self.rarities = [Rarity(c) for c in data.get('rarities')]
-        self.card = [CardInfo(c) for c in data.get('rarities')]
+        self.card = [CardInfo(c) for c in data.get('cards')]
 
     def __repr__(self):
         return '<Clash Royale Constants Object>'
