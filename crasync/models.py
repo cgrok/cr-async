@@ -23,6 +23,7 @@ SOFTWARE.
 '''
 import json
 from os import path
+from .core import Client
 
 _path = path.join(
     path.dirname(path.realpath(__file__)), 
@@ -52,7 +53,11 @@ class Base:
 
     async def update(self):
         '''Update an object with current info.'''
-        data = await self.client.request(self.url)
+        if self.client.session.closed:
+            async with Client() as client:
+                data = await client.request(self.url)
+        else:
+            data = await self.client.request(self.url)
 
         self.raw_data = data
         self.from_data(data)
@@ -144,6 +149,8 @@ class Member:
         return '<Member tag={0.tag}>'.format(self)
 
     def get_profile(self):
+        if self.client.session.closed:
+            return crasync.get_profile(self.tag)
         return self.client.get_profile(self.tag)
 
 class Alliance:
@@ -206,7 +213,10 @@ class ClanInfo:
         return "http://api.cr-api.com" + url
 
     def get_clan(self):
-        return self.client.get_clan(self.tag)
+        if self.client.session.closed:
+            return crasync.get_clan(self.tag)
+        else:
+            return self.client.get_clan(self.tag)
 
     def __repr__(self):
         return '<ClanInfo tag={0.tag}>'.format(self)
@@ -311,7 +321,10 @@ class Profile(Base):
     def get_clan(self):
         if self.clan_tag is None:
             raise ValueError('Profile has no Clan')
-        return self.client.get_clan(self.clan_tag)
+        if self.client.session.closed:
+            return crasync.get_clan(self.clan_tag)
+        else:
+            return self.client.get_clan(self.clan_tag)
 
     def __repr__(self):
         return '<Profile tag={0.tag}>'.format(self)
