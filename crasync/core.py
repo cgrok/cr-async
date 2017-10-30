@@ -53,7 +53,10 @@ class Client:
 
     async def request(self, url):
         async with self.session.get(url) as resp:
-            data = await resp.json()
+            try:
+                data = await resp.json()
+            except (asyncio.TimeoutError, aiohttp.ClientResponseError):
+                raise ServerError(resp, {})
 
             # Request was successful 
             if 300 > resp.status >= 200:
