@@ -267,12 +267,17 @@ class Profile(Base):
         self.losses = games.get('losses')
         self.draws = games.get('draws')
         self.arena = Arena(data.get('arena'))
-        self.clan_tag = clan.get('tag')
-        self.clan_name = clan.get('name')
-        self.clan_role = clan.get('role')
         self.shop_offers = Shop(data.get('shopOffers'))
         self.chest_cycle = Cycle(data.get('chestCycle'))
         self.deck = [Card(c) for c in data.get('currentDeck')]
+        if clan is None:
+            self.clan_tag = None
+            self.clan_name = None
+            self.clan_role = None
+        else:
+            self.clan_tag = clan.get('tag')
+            self.clan_name = clan.get('name')
+            self.clan_role = clan.get('role')
 
     @property
     def clan_badge_url(self):
@@ -290,6 +295,8 @@ class Profile(Base):
         print(chests[index])
 
     def get_clan(self):
+        if self.clan_tag is None:
+            raise NotImplementedError('Profile has no Clan')
         return self.client.get_clan(self.clan_tag)
 
     def __repr__(self):

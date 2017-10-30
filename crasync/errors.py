@@ -43,4 +43,3 @@ class NotFoundError(RequestError):
 class ServerError(RequestError):
     '''Raised if the api service is having issues'''
     pass
-
