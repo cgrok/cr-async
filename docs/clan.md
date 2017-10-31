@@ -34,3 +34,6 @@
 
 > **`members`** - The clan's members    
 **Returns:** list [[Member](member.md), [Member](member.md), [Member](member.md)... [Member](member.md)]
+
+> **`badge_url`** - The clan's badge url    
+**Returns:** str

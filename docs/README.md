@@ -1,6 +1,6 @@
 # Welcome!
 
-CR-Async is an **asynchronus** CR API wrapper for Python made to be both fully-featured, object oriented and easy to use.
+CR-Async is an **asynchronus** CR API wrapper for Python made to be fully-featured, object oriented and easy to use.
 
 # Installing
 
@@ -13,24 +13,11 @@ pip3 install crasync
 
 Since this is an asynchronus wrapper, the code has to be within an asynchronus function.
 
-A short example to grab a member's name and his clan's tag, and the number of his clan members.
+Some examples can be found in the [/examples](https://github.com/grokkers/cr-async/tree/master/examples) of the github repository!
 
-```python
-import crasync
-import aiohttp
-import asyncio
+# I need help!
 
-async def main():
-    client = crasync.Client()
-    profile = await client.get_profile('2P0LYQ')
-    print(profile.name)
-    print(profile.clan_tag)
-    clan = await profile.get_clan()
-    print(len(clan.members))
-
-loop = asyncio.get_event_loop()
-loop.run_until_complete(main())
-```
+Join the support server [here](https://discord.gg/pmQSbAd) and head to the #cr-async channel!
 
 # What are more things I can do?
 

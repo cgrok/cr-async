@@ -10,3 +10,6 @@
 
 > **`trophies`** - The number of trophies required to get to this arena.    
 **Returns:** int
+
+> **`image_url`** - The arena's image url.     
+**Returns:** str

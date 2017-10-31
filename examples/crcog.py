@@ -33,7 +33,7 @@ class ClashCog:
         # Example of adding data. (Bad)
         for attr in self.cdir(profile):
             value = getattr(profile, attr) 
-            if not callable(val):
+            if not callable(value):
                 em.add_field(
                     name=attr.replace('_').title(), 
                     value=str(value)

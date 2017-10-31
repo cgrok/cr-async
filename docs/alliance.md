@@ -5,5 +5,5 @@
 > **`roles`** - Information about clan roles.    
 **Returns:** list: [None, Member, Elder, Co-Leader]
 
-> **`types`** - Information about clan types.
+> **`types`** - Information about clan types.   
 **Returns:** list: [None, Open, Invite Only, Closed]

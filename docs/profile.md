@@ -1,6 +1,20 @@
 # Profile
 ?> Represents a clash royale player profile.
 
+#### Methods
+
+##### *coroutine* **`get_clan()`**
+  * Returns the full clan object corresponding to the player's clan.    
+  Returns ValueError if player is not in a clan
+
+  * Return Type: [Clan](clan.md)
+
+##### **`get_chest(index=0)`**
+  * Returns the `index`'th chest of the player.    
+  If player's next chest is `Super Magical`, it returns `Super Magical` when you do `profile.get_clan(0)`
+
+  * Return Type: str
+  
 #### Attributes
 > **`tag`** - The player tag associated with the profile    
 **Returns:** int
@@ -20,7 +34,7 @@
 > **`global_rank`** - The global rank of the player.    
 **Returns**: int or None
 
-> **`current_trophies`** - The number of trophies the player is currently at.
+> **`current_trophies`** - The number of trophies the player is currently at.    
 **Returns:** int
   
 > **`highest_trophies`** - The highest trophies the player has reached.    
@@ -56,6 +70,9 @@
 > **`draws`** - The amount of games drawn by the player.    
 **Returns:** int
 
+> **`win_streak`** - The current win streak of the player.    
+**Returns:** int
+
 > **`arena`** - An arena object representing the player's arena.    
 **Returns:** [Arena](arena.md)
 
@@ -77,8 +94,5 @@
 > **`deck`** - The player's deck    
 **Returns:** list [[Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md)]
 
-#### Methods
-
-##### *coroutine* **`get_clan()`**
-  * Returns the full clan object corresponding to the player's clan.    
-  Returns NotImplementedError if player is not in a Clan
+> **`clan_badge_url`** - The profile's clan's badge url. Returns None if user is not in a clan.    
+**Returns:** str or None
