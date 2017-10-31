@@ -23,7 +23,8 @@ SOFTWARE.
 '''
 import json
 from os import path
-from .core import Client
+from . import core
+from .helpers import *
 
 _path = path.join(
     path.dirname(path.realpath(__file__)), 
@@ -54,7 +55,7 @@ class Base:
     async def update(self):
         '''Update an object with current info.'''
         if self.client.session.closed:
-            async with Client() as client:
+            async with core.Client() as client:
                 data = await client.request(self.url)
         else:
             data = await self.client.request(self.url)
@@ -150,7 +151,7 @@ class Member:
 
     def get_profile(self):
         if self.client.session.closed:
-            return crasync.get_profile(self.tag)
+            return get_profile(self.tag)
         return self.client.get_profile(self.tag)
 
 class Alliance:
@@ -214,7 +215,7 @@ class ClanInfo:
 
     def get_clan(self):
         if self.client.session.closed:
-            return crasync.get_clan(self.tag)
+            return get_clan(self.tag)
         else:
             return self.client.get_clan(self.tag)
 
@@ -322,7 +323,7 @@ class Profile(Base):
         if self.clan_tag is None:
             raise ValueError('Profile has no Clan')
         if self.client.session.closed:
-            return crasync.get_clan(self.clan_tag)
+            return get_clan(self.clan_tag)
         else:
             return self.client.get_clan(self.clan_tag)
 
