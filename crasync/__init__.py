@@ -23,6 +23,8 @@ SOFTWARE.
 '''
 
 from .core import Client
+from .helpers import *
+
 
 ############
 # METADATA #
@@ -34,27 +36,3 @@ __license__ = 'MIT'
 __author__ = 'verixx'
 __github__ = 'https://github.com/grokkers/cr-async'
 
-
-##########################################################
-# EVERYTHING BELOW ARE SHORTCUTS USING TEMPORARY CLIENTS # 
-##########################################################
-
-async def get_profile(*tags):
-    async with Client() as client:
-        return await client.get_profile(*tags)
-
-get_profiles = get_profile
-
-async def get_clan(*tags):
-    async with Client() as client:
-        return await client.get_clan(*tags)
-
-get_clans = get_clan
-
-async def get_constants():
-    async with Client() as client:
-        return await client.get_constants()
-
-async def get_top_clans():
-    async with Client as client:
-        return await client.get_top_clans()
