@@ -67,7 +67,7 @@ class Client:
                 raise NotFoundError(resp, data)
 
             # Something wrong with the api servers :(
-            if resp.stats > 500:
+            if resp.status > 500:
                 raise ServerError(resp, data)
 
             # Everything else
