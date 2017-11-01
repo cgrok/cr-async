@@ -49,7 +49,7 @@ class Base:
         endpoint = type(self).__name__.lower()
         self.url = '{0.client.BASE}/{1}/{0.tag}'.format(self, endpoint)
        
-    async def from_data(self):
+    async def from_data(self, data):
         return NotImplemented
 
     async def update(self):
@@ -101,6 +101,36 @@ class Cycle:
         self.super_magical = data.get('superMagicalPos')
         self.legendary = data.get('legendaryPos')
         self.epic = data.get('epicPos')
+
+    @property
+    def magical(self):
+        i = self.position
+        index = self.position % len(CHESTS)
+        while True:
+            if index == len(CHESTS):
+                index = 0
+                i += len(CHESTS)
+            if CHESTS[index] == 'Magic':
+                return index + i
+            else:
+                index += 1
+                i += 1
+                continue
+
+    @property
+    def giant(self):
+        i = self.position
+        index = self.position % len(CHESTS)
+        while True:
+            if index == len(CHESTS):
+                index = 0
+                i += len(CHESTS)
+            if CHESTS[index] == 'Giant':
+                return index + i
+            else:
+                index += 1
+                i += 1
+                continue
 
 class CardInfo:
     '''Represents a Clash Royale card'''
