@@ -338,7 +338,7 @@ class Profile(Base):
             self.clan_tag = clan.get('tag')
             self.clan_name = clan.get('name')
             self.clan_role = clan.get('role')
-        self.seasons = [Season(season) for season in data.get('previousSeasons')]
+        self.seasons = None if data.get('previousSeasons') == [] else [Season(season) for season in data.get('previousSeasons')]
 
     @property
     def clan_badge_url(self):
