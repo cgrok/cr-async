@@ -71,9 +71,20 @@ class ClanChest:
         self.crowns = data.get('clanChestCrowns')
         self.percent = data.get('clanChestCrownsPercent')
         self.required = data.get('clanChestCrownsRequired')
+        
+class Season:
+    '''Represents a Season'''
+    def __init__(self, data):
+        self.number = data.get('seasonNumber')
+        self.highest = data.get('seasonHighest')
+        self.ending = data.get('seasonEnding')
+        self.end_global = data.get('seasonEndGlobalRank')
+        
+    def __str__(self):
+        return "Season {}".format(self.number)
 
 class Arena:
-    '''represents an arena'''
+    '''Represents an arena'''
     def __init__(self, data):
         self.raw_data = data
         self.name = data.get('name')
@@ -327,6 +338,7 @@ class Profile(Base):
             self.clan_tag = clan.get('tag')
             self.clan_name = clan.get('name')
             self.clan_role = clan.get('role')
+        self.seasons = [Season(season) for season in data.get('previousSeasons')]
 
     @property
     def clan_badge_url(self):
