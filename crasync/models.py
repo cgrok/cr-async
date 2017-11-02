@@ -90,9 +90,9 @@ class Arena:
 class Shop:
     '''Represents shop offers'''
     def __init__(self, data):
-        self.legendary = 0 if data.get('legendary', 0) < 0 else data.get('legendary')
-        self.epic = 0 if data.get('epic', 0) < 0 else data.get('epic')
-        self.arena = 0 if data.get('arena', 0) < 0 else data.get('arena')
+        self.legendary = 0 if data.get('legendary') is None or data.get('legendary', 0) < 0 else data.get('legendary')
+        self.epic = 0 if data.get('epic') is None or data.get('epic', 0) < 0 else data.get('epic')
+        self.arena = 0 if data.get('arena') is None or data.get('arena', 0) < 0 else data.get('arena')
 
 class Cycle:
     '''Represents your chest cycle'''
