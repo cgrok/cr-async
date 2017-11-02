@@ -96,3 +96,6 @@
 
 > **`clan_badge_url`** - The profile's clan's badge url. Returns None if user is not in a clan.    
 **Returns:** str or None
+
+> **`seasons`** - Player's previous seasons.    
+**Returns:** List [[Season](season.md), [Season](season.md), [Season](season.md)... [Season](season.md)] or None
