@@ -122,7 +122,7 @@ class Cycle:
             count += 1 
             index += 1 
             x = CHESTS[index]
-        return count
+        return count+self.position
 
     @property
     def giant(self):
@@ -133,7 +133,7 @@ class Cycle:
             count += 1 
             index += 1 
             x = CHESTS[index]
-        return count
+        return count+self.position
 
 class CardInfo:
     '''Represents a Clash Royale card'''
