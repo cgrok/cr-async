@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='crasync',
     packages=['crasync'],  # this must be the same as the name above
-    version='v2.0.10',
+    version='v2.0.12',
     description='An async wrapper for cr-api.com',
     author='verixx',
     license='MIT',

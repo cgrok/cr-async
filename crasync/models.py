@@ -115,33 +115,25 @@ class Cycle:
 
     @property
     def magical(self):
-        i = self.position
         index = self.position % len(CHESTS)
-        while True:
-            if index == len(CHESTS):
-                index = 0
-                i += len(CHESTS)
-            if CHESTS[index] == 'Magic':
-                return index + i
-            else:
-                index += 1
-                i += 1
-                continue
+        count = 0
+        x = None
+        while x != 'Magic':
+            count += 1 
+            index += 1 
+            x = CHESTS[index]
+        return count
 
     @property
     def giant(self):
-        i = self.position
         index = self.position % len(CHESTS)
-        while True:
-            if index == len(CHESTS):
-                index = 0
-                i += len(CHESTS)
-            if CHESTS[index] == 'Giant':
-                return index + i
-            else:
-                index += 1
-                i += 1
-                continue
+        count = 0
+        x = None
+        while x != 'Giant':
+            count += 1 
+            index += 1 
+            x = CHESTS[index]
+        return count
 
 class CardInfo:
     '''Represents a Clash Royale card'''
