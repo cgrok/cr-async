@@ -49,7 +49,7 @@ class Base:
         endpoint = type(self).__name__.lower()
         self.url = '{0.client.BASE}/{1}/{0.tag}'.format(self, endpoint)
        
-    async def from_data(self):
+    async def from_data(self, data):
         return NotImplemented
 
     async def update(self):
@@ -71,9 +71,20 @@ class ClanChest:
         self.crowns = data.get('clanChestCrowns')
         self.percent = data.get('clanChestCrownsPercent')
         self.required = data.get('clanChestCrownsRequired')
+        
+class Season:
+    '''Represents a Season'''
+    def __init__(self, data):
+        self.number = data.get('seasonNumber')
+        self.highest = data.get('seasonHighest')
+        self.ending = data.get('seasonEnding')
+        self.end_global = data.get('seasonEndGlobalRank')
+        
+    def __str__(self):
+        return "Season {}".format(self.number)
 
 class Arena:
-    '''represents an arena'''
+    '''Represents an arena'''
     def __init__(self, data):
         self.raw_data = data
         self.name = data.get('name')
@@ -90,9 +101,9 @@ class Arena:
 class Shop:
     '''Represents shop offers'''
     def __init__(self, data):
-        self.legendary = 0 if data.get('legendary', 0) < 0 else data.get('legendary')
-        self.epic = 0 if data.get('epic', 0) < 0 else data.get('epic')
-        self.arena = 0 if data.get('arena', 0) < 0 else data.get('arena')
+        self.legendary = 0 if data.get('legendary') is None or data.get('legendary', 0) < 0 else data.get('legendary')
+        self.epic = 0 if data.get('epic') is None or data.get('epic', 0) < 0 else data.get('epic')
+        self.arena = 0 if data.get('arena') is None or data.get('arena', 0) < 0 else data.get('arena')
 
 class Cycle:
     '''Represents your chest cycle'''
@@ -101,6 +112,36 @@ class Cycle:
         self.super_magical = data.get('superMagicalPos')
         self.legendary = data.get('legendaryPos')
         self.epic = data.get('epicPos')
+
+    @property
+    def magical(self):
+        i = self.position
+        index = self.position % len(CHESTS)
+        while True:
+            if index == len(CHESTS):
+                index = 0
+                i += len(CHESTS)
+            if CHESTS[index] == 'Magic':
+                return index + i
+            else:
+                index += 1
+                i += 1
+                continue
+
+    @property
+    def giant(self):
+        i = self.position
+        index = self.position % len(CHESTS)
+        while True:
+            if index == len(CHESTS):
+                index = 0
+                i += len(CHESTS)
+            if CHESTS[index] == 'Giant':
+                return index + i
+            else:
+                index += 1
+                i += 1
+                continue
 
 class CardInfo:
     '''Represents a Clash Royale card'''
@@ -297,6 +338,7 @@ class Profile(Base):
             self.clan_tag = clan.get('tag')
             self.clan_name = clan.get('name')
             self.clan_role = clan.get('role')
+        self.seasons = None if data.get('previousSeasons') == [] else [Season(season) for season in data.get('previousSeasons')]
 
     @property
     def clan_badge_url(self):
