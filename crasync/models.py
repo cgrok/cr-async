@@ -312,6 +312,7 @@ class Profile(Base):
         self.favourite_card = stats.get('favoriteCard').title()
         self.total_donations = stats.get('totalDonations')
         self.max_wins = stats.get('challengeMaxWins')
+        self.three_crown_wins = stats.get('threeCrownWins')
         self.games_played = games.get('total')
         self.wins = games.get('wins')
         self.losses = games.get('losses')
