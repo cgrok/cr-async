@@ -120,7 +120,9 @@ class Cycle:
         x = None
         while x != 'Magic':
             count += 1 
-            index += 1 
+            index += 1
+            if index == len(CHESTS) - 1:
+                index = 0 
             x = CHESTS[index]
         return count+self.position
 
@@ -131,7 +133,9 @@ class Cycle:
         x = None
         while x != 'Giant':
             count += 1 
-            index += 1 
+            index += 1
+            if index == len(CHESTS) - 1:
+                index = 0
             x = CHESTS[index]
         return count+self.position
 
