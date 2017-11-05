@@ -153,7 +153,7 @@ class CardInfo:
         self.decklink = data.get('decklink')
 
     def __repr__(self):
-        return '<Card id={0.id}>'.format(self)
+        return '<Card id={0.card_id}>'.format(self)
 
 class PlayerCard(CardInfo):
 
