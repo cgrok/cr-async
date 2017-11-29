@@ -148,11 +148,13 @@ class CardInfo:
         self.name = data.get('name')
         self.rarity = data.get('rarity')
         self.card_id = data.get('card_id')
+        self.key = data.get('key')
         self.elixir = data.get('elixir')
         self.type = data.get('type')
         self.arena = data.get('arena')
         self.description = data.get('description')
         self.deck_link = data.get('decklink')
+        self.image_url = 'https://cr-api.github.io/cr-api-assets/card/{}.png'.format(self.key)
 
     def __repr__(self):
         return '<Card id={0.card_id}>'.format(self)
