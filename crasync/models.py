@@ -48,6 +48,8 @@ class Base:
         self.from_data(data)
         endpoint = type(self).__name__.lower()
         self.url = '{0.client.BASE}/{1}/{0.tag}'.format(self, endpoint)
+        if self.tag is None:
+            self.url = '{0.client.BASE}/{1}'.format(self, endpoint)
        
     async def from_data(self, data):
         return NotImplemented
@@ -150,7 +152,7 @@ class CardInfo:
         self.type = data.get('type')
         self.arena = data.get('arena')
         self.description = data.get('description')
-        self.decklink = data.get('decklink')
+        self.deck_link = data.get('decklink')
 
     def __repr__(self):
         return '<Card id={0.card_id}>'.format(self)
@@ -199,12 +201,7 @@ class Alliance:
 class Country:
     def __init__(self, data):
         self.name = data.get('name')
-        if data.get('isCountry') == 'true':
-            self.is_country = True
-        elif data.get('isCountry') == 'false':
-            self.is_country = False
-        else:
-            self.is_country = data.get('isCountry')
+        self.is_country = data.get('isCountry')
         
     def __str__(self):
         return self.name
@@ -328,6 +325,10 @@ class Profile(Base):
         self.shop_offers = Shop(data.get('shopOffers'))
         self.chest_cycle = Cycle(data.get('chestCycle'))
         self.deck = [PlayerCard(c) for c in data.get('currentDeck')]
+        self.deck_link = 'https://link.clashroyale.com/deck/en?deck='
+        for card in self.deck:
+            self.deck_link += card.deck_link + ';'
+        self.deck_link = self.deck_link[:-1]
         self.clan_tag = None
         self.clan_name = None
         self.clan_role = None
@@ -384,7 +385,6 @@ class Constants(Base):
         self.chest_cycle = [c for c in data.get('chestCycle').get('order')]
         self.country_codes = [Country(c) for c in data.get('countryCodes')]
         self.rarities = [Rarity(c) for c in data.get('rarities')]
-        self.cards = {c['name'].lower():CardInfo(c) for c in data.get('cards')}
         self.cards = {c['name'].lower().replace('.','').replace('-',''):CardInfo(c) for c in data.get('cards')}
 
     def __repr__(self):
