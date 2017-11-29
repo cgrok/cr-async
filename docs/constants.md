@@ -14,13 +14,22 @@
 > **`chest_cycle`** - Information about the full length chest cycle.    
 **Returns:** list [Silver, Silver, Silver, Gold... Silver]
 
-> **country_codes** - Information about the various countries in the game.    
+> **`country_codes`** - Information about the various countries in the game.    
 **Returns:** list [[Country](country.md), [Country](country.md), [Country](country.md)... [Country](country.md)]
 
-> **rarities** - Detailed and technical information about each rarity in the game.    
+> **`rarities`** - Detailed and technical information about each rarity in the game.    
 **Returns:** list [[Rarity](rarity.md), [Rarity](rarity.md), [Rarity](rarity.md)... [Rarity](rarity.md)]
 
-> **rarities** - Information about each card in the game.    
+> **`cards`** - Information about each card in the game.    
 **Returns:** dict {'knight': [CardInfo](cardinfo.md), 'archers': [CardInfo](cardinfo.md),... 'goblins': [CardInfo](cardinfo.md)]
+
+> **`raw_data`** - Raw dictionary data from the API    
+**Returns:** dict
+
+> **`url`** - API Endpoint for the profile    
+**Returns:** str
+
+> **`update`** - Update the current object    
+**Returns:** [Profile](profile.md)
 
 To get your next chest in cycle, look [here](https://grokkers.github.io/cr-async/#/profile?id=methods)!

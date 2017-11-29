@@ -11,7 +11,7 @@
 
 ##### **`get_chest(index=0)`**
   * Returns the `index`'th chest of the player.    
-  If player's next chest is `Super Magical`, it returns `Super Magical` when you do `profile.get_clan(0)`
+  If player's next chest is `Super Magical`, it returns `Super Magical` when you do `profile.get_chest(0)`
 
   * Return Type: str
   
@@ -25,7 +25,10 @@
 > **`level`** - The current level the player is at.    
 **Returns:** int
 
-> **`experience`** - A tuple of current xp and xp required to level up.    
+> **`xp`** - A tuple of current xp and xp required to level up. Alias of `experience`    
+**Returns:** tuple (int, int)
+
+> **`experience`** - A tuple of current xp and xp required to level up. Alias of `xp`    
 **Returns:** tuple (int, int)
 
 > **`name_changed`** - Indicates whether or not the player has changed names.    
@@ -70,6 +73,9 @@
 > **`draws`** - The amount of games drawn by the player.    
 **Returns:** int
 
+> **`three_crown_wins`** - The amount of three crown wins obtained by the player.    
+**Returns:** int
+
 > **`win_streak`** - The current win streak of the player.    
 **Returns:** int
 
@@ -79,7 +85,7 @@
 > **`clan_tag`** - The tag of the clan the player is currently in  
 **Returns:** int or None
 
-> **`clan_tag`** - The name of the clan the player is currently in    
+> **`clan_name`** - The name of the clan the player is currently in    
 **Returns:** str or None
 
 > **`clan_role`** - The role of the player in his current clan    
@@ -94,8 +100,20 @@
 > **`deck`** - The player's deck    
 **Returns:** list [[Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md), [Card](card.md)]
 
+> **`deck_link`** - A deck link that can be used in the game.    
+**Returns:** str
+
 > **`clan_badge_url`** - The profile's clan's badge url. Returns None if user is not in a clan.    
 **Returns:** str or None
 
 > **`seasons`** - Player's previous seasons.    
 **Returns:** List [[Season](season.md), [Season](season.md), [Season](season.md)... [Season](season.md)] or None
+
+> **`raw_data`** - Raw dictionary data from the API    
+**Returns:** dict
+
+> **`url`** - API Endpoint for the profile    
+**Returns:** str
+
+> **`update`** - Update the current object    
+**Returns:** [Profile](profile.md)

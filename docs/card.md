@@ -20,6 +20,9 @@
 > **`card_id`** - The ID of the current card.    
 **Returns:** int
 
+> **`key`** - The key of the current card.    
+**Returns:** str
+
 > **`elixir`** - The elixir cost of the card.    
 **Returns:** int
 
@@ -32,5 +35,8 @@
 > **`description`** - The description of the card.    
 **Returns:** str
 
-> **`decklink`** - The deck link for the card.    
+> **`deck_link`** - The deck link for the card.    
+**Returns:** str
+
+> **`image_url`** - An image URL for the card, from cr-api assets.    
 **Returns:** str
