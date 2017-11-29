@@ -5,7 +5,7 @@ setup(
     packages=['crasync'],  # this must be the same as the name above
     version='v2.1.0',
     description='An async wrapper for cr-api.com',
-    author='kyber',
+    author='verixx',
     license='MIT',
     author_email='abdurraqeeb53@gmail.com',
     url='https://github.com/grokkers/cr-async',  # use the URL to the github repo
