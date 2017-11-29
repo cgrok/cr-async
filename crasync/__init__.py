@@ -30,7 +30,7 @@ from .helpers import *
 # METADATA #
 ############
 
-__version__ = 'v2.0.0'
+__version__ = 'v2.1.0'
 __title__ = 'crasync'
 __license__ = 'MIT'
 __author__ = 'verixx'
