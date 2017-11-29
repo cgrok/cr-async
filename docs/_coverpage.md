@@ -1,6 +1,6 @@
 ![logo](media/dgTICLL.png)
 
-# cr-async <small>v1.0.0a</small>
+# cr-async <small>v2.1.0</small>
 
 > An asynchronous clashroyale api wrapper
 
