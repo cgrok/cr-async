@@ -39,7 +39,8 @@ class Client:
 
     BASE = 'http://api.cr-api.com'
 
-    def __init__(self, session=None):
+    def __init__(self, session=None, timeout=10):
+        self.timeout = timeout
         self.session = session or aiohttp.ClientSession()
 
     async def __aenter__(self):
@@ -52,7 +53,7 @@ class Client:
         self.session.close()
 
     async def request(self, url):
-        async with self.session.get(url) as resp:
+        async with self.session.get(url, timeout=self.timeout) as resp:
             try:
                 data = await resp.json()
             except (asyncio.TimeoutError, aiohttp.ClientResponseError):
