@@ -25,7 +25,7 @@ SOFTWARE.
 import aiohttp
 import asyncio
 from .models import Profile, Clan, Constants, ClanInfo
-from .errors import RequestError, NotFoundError, ServerError
+from .errors import RequestError, NotFoundError, ServerError, NotResponding
 
 class Client:
 
@@ -53,27 +53,30 @@ class Client:
         self.session.close()
 
     async def request(self, url):
-        async with self.session.get(url, timeout=self.timeout) as resp:
-            try:
-                data = await resp.json()
-            except (asyncio.TimeoutError, aiohttp.ClientResponseError):
-                raise ServerError(resp, {})
+        try:
+            async with self.session.get(url, timeout=self.timeout) as resp:
+                try:
+                    data = await resp.json()
+                except (asyncio.TimeoutError, aiohttp.ClientResponseError):
+                    raise ServerError(resp, {})
 
-            # Request was successful 
-            if 300 > resp.status >= 200:
-                return data
+                # Request was successful 
+                if 300 > resp.status >= 200:
+                    return data
 
-            # Tag not found
-            if resp.status == 404:
-                raise NotFoundError(resp, data)
+                # Tag not found
+                if resp.status == 404:
+                    raise NotFoundError(resp, data)
 
-            # Something wrong with the api servers :(
-            if resp.status > 500:
-                raise ServerError(resp, data)
+                # Something wrong with the api servers :(
+                if resp.status > 500:
+                    raise ServerError(resp, data)
 
-            # Everything else
-            else:
-                raise RequestError(resp, data)
+                # Everything else
+                else:
+                    raise RequestError(resp, data)
+        except asyncio.TimeoutError:
+            raise NotResponding()
 
 
     async def get_profile(self, *tags):
